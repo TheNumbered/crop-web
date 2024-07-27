@@ -14,7 +14,7 @@
         "**/*config*": true,
         "**/.es*": true,
 
-        "**/public": true,
+        //"**/public": true,
      },
     "editor.codeActionsOnSave": {
         "source.organizeImports": "always"
