@@ -1,0 +1,14 @@
+node_modules
+dist
+*.local
+*.log
+
+*.env
+*.vercel
+
+.vercel
+.env*.local
+
+pnpm-lock.yaml
+yarn.lock
+package-lock.json
