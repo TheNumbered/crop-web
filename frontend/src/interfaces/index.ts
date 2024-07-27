@@ -1,119 +1,123 @@
-export interface Crop_listings {
-    id: number;
-    cropName: string;
-    variety: string;
-    qualityGrade: any;
-    quantity: string;
-    startingBid?: any;
-    bidIncrement?: any;
-    currentBid?: any;
-    auctionStart: any;
-    auctionEnd: any;
-    sellerName: string;
-    sellerRating?: any;
-    contactInfo: string;
-    location: string;
-    shippingOptions: any;
-    pickupOptions: any;
-    description: string;
-    certifications: any;
-    crop_listings?: any;
+export interface Course_topics {
+  id: number;
+  course_id: number;
+  my_resources: any;
+}
+
+export interface Courses {
+  id: number;
+  course_name: string;
+  user_id: number;
+  courses: any;
+  cropName: string;
+  variety: string;
+  qualityGrade: any;
+  quantity: string;
+  currentBid?: any;
+  auctionEnd: any;
+  sellerName: string;
+  contactInfo: string;
+  location: string;
+  shippingOptions: any;
+  pickupOptions: any;
+  description: string;
+  certifications: any;
+  primary_image?: string;
+  pictures?: any;
+  crop_listings?: any;
 }
 
 export interface Farming_courses {
-    id: number;
-    title?: string;
-    description?: string;
-    image_url?: string;
-    farming_courses?: any;
+  id: number;
+  title?: string;
+  description?: string;
+  image_url?: string;
+  farming_courses?: any;
 }
 
-export interface Market_items {
-    id: number;
-    name?: string;
-    image?: string;
-    highest_bid?: number;
-    description?: string;
-    location?: string;
-    end_date?: any;
-    market_items?: any;
+export interface Forum_comments {
+  id: number;
+  topic_id: number;
+  message: string;
+  repliedBy: string;
+  date?: string;
+  replyImageURL?: string;
+  replierId?: string;
 }
 
-export interface Replies {
-    id: number;
-    topic_id: number;
-    message: string;
-    repliedBy: string;
-    date?: string;
-    replyImageURL?: string;
-    replierId?: string;
+export interface Forum_topics {
+  id: number;
+  subject: string;
+  message: string;
+  startedBy: string;
+  date?: string;
+  userId?: string;
+  imageURL?: string;
+  forum_topics?: any;
 }
 
-export interface Topics {
-    id: number;
-    subject: string;
-    message: string;
-    startedBy: string;
-    date?: string;
-    userId?: string;
-    imageURL?: string;
-    topics?: any;
+export interface Resources {
+  id: number;
+  topic_id: number;
+  url: string;
+  rank?: number;
 }
 
-export interface Crop_listingsInput {
-    cropName: string;
-    variety: string;
-    qualityGrade: any;
-    quantity: string;
-    startingBid?: any;
-    bidIncrement?: any;
-    currentBid?: any;
-    auctionStart: any;
-    auctionEnd: any;
-    sellerName: string;
-    sellerRating?: any;
-    contactInfo: string;
-    location: string;
-    shippingOptions: any;
-    pickupOptions: any;
-    description: string;
-    certifications: any;
-    crop_listings?: any;
+export interface Course_topicsInput {
+  course_id: number;
+  my_resources: any;
+}
+
+export interface CoursesInput {
+  course_name: string;
+  user_id: number;
+  courses: any;
+  cropName: string;
+  variety: string;
+  qualityGrade: any;
+  quantity: string;
+  currentBid?: any;
+  auctionEnd: any;
+  sellerName: string;
+  contactInfo: string;
+  location: string;
+  shippingOptions: any;
+  pickupOptions: any;
+  description: string;
+  certifications: any;
+  primary_image?: string;
+  pictures?: any;
+  crop_listings?: any;
 }
 
 export interface Farming_coursesInput {
-    title?: string;
-    description?: string;
-    image_url?: string;
-    farming_courses?: any;
+  title?: string;
+  description?: string;
+  image_url?: string;
+  farming_courses?: any;
 }
 
-export interface Market_itemsInput {
-    name?: string;
-    image?: string;
-    highest_bid?: number;
-    description?: string;
-    location?: string;
-    end_date?: any;
-    market_items?: any;
+export interface Forum_commentsInput {
+  topic_id: number;
+  message: string;
+  repliedBy: string;
+  date?: string;
+  replyImageURL?: string;
+  replierId?: string;
 }
 
-export interface RepliesInput {
-    topic_id: number;
-    message: string;
-    repliedBy: string;
-    date?: string;
-    replyImageURL?: string;
-    replierId?: string;
+export interface Forum_topicsInput {
+  subject: string;
+  message: string;
+  startedBy: string;
+  date?: string;
+  userId?: string;
+  imageURL?: string;
+  forum_topics?: any;
 }
 
-export interface TopicsInput {
-    subject: string;
-    message: string;
-    startedBy: string;
-    date?: string;
-    userId?: string;
-    imageURL?: string;
-    topics?: any;
+export interface ResourcesInput {
+  topic_id: number;
+  url: string;
+  rank?: number;
 }
-
