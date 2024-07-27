@@ -22,7 +22,7 @@ export const CommunityForum: React.FC = () => {
   }, []);
 
   const fetchTopics = async () => {
-    const url = "http://localhost:3000/api/topics";
+    const url = "http://localhost:3000/forums/topics";
     try {
       const response = await fetch(url);
       if (response.ok) {
@@ -57,7 +57,7 @@ export const CommunityForum: React.FC = () => {
       };
 
       try {
-        const response = await fetch("http://localhost:3000/api/topics", {
+        const response = await fetch("http://localhost:3000/forums/topics", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -100,7 +100,7 @@ export const CommunityForum: React.FC = () => {
       };
 
       try {
-        const response = await fetch("http://localhost:3000/api/replies", {
+        const response = await fetch("http://localhost:3000/forums/replies", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -144,7 +144,7 @@ export const CommunityForum: React.FC = () => {
     if (userId === topic.userId) {
       try {
         const response = await fetch(
-          `http://localhost:3000/api/topics/${topic.id}`,
+          `http://localhost:3000/forums/topics/${topic.id}`,
           {
             method: "DELETE",
           }
@@ -170,7 +170,7 @@ export const CommunityForum: React.FC = () => {
     if (userId === reply.replierId) {
       try {
         const response = await fetch(
-          `http://localhost:3000/api/reply/${reply.id}`,
+          `http://localhost:3000/forums/reply/${reply.id}`,
           {
             method: "DELETE",
           }

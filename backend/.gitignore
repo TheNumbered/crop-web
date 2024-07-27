@@ -2,6 +2,7 @@ node_modules
 dist
 *.local
 *.log
+*.sever
 
 *.env
 *.vercel
