@@ -1,123 +1,92 @@
-export interface Course_topics {
-  id: number;
-  course_id: number;
-  my_resources: any;
+export interface CourseTopics {
+    id: number;
+    course_id: number;
+    my_resources: any;
 }
 
 export interface Courses {
-  id: number;
-  course_name: string;
-  user_id: number;
-  courses: any;
-  cropName: string;
-  variety: string;
-  qualityGrade: any;
-  quantity: string;
-  currentBid?: any;
-  auctionEnd: any;
-  sellerName: string;
-  contactInfo: string;
-  location: string;
-  shippingOptions: any;
-  pickupOptions: any;
-  description: string;
-  certifications: any;
-  primary_image?: string;
-  pictures?: any;
-  crop_listings?: any;
+    id: number;
+    course_name: any;
+    user_id: number;
+    description: string;
 }
 
-export interface Farming_courses {
-  id: number;
-  title?: string;
-  description?: string;
-  image_url?: string;
-  farming_courses?: any;
+export interface CropListings {
+    id: number;
+    cropName: any;
+    variety: any;
+    qualityGrade: any;
+    quantity: any;
+    auctionEnd: Date;
+    sellerName: any;
+    contactInfo: any;
+    location: any;
+    shippingOptions: any;
+    pickupOptions: any;
+    description: string;
+    certifications: any;
 }
 
-export interface Forum_comments {
-  id: number;
-  topic_id: number;
-  message: string;
-  repliedBy: string;
-  date?: string;
-  replyImageURL?: string;
-  replierId?: string;
+export interface ForumComments {
+    id: number;
+    topic_id: number;
+    message: string;
+    repliedBy: any;
 }
 
-export interface Forum_topics {
-  id: number;
-  subject: string;
-  message: string;
-  startedBy: string;
-  date?: string;
-  userId?: string;
-  imageURL?: string;
-  forum_topics?: any;
+export interface ForumTopics {
+    id: number;
+    subject: any;
+    message: string;
+    startedBy: any;
 }
 
 export interface Resources {
-  id: number;
-  topic_id: number;
-  url: string;
-  rank?: number;
+    id: number;
+    topic_id: number;
+    url: any;
 }
 
-export interface Course_topicsInput {
-  course_id: number;
-  my_resources: any;
+export interface CourseTopicsInput {
+    course_id: number;
+    my_resources: any;
 }
 
 export interface CoursesInput {
-  course_name: string;
-  user_id: number;
-  courses: any;
-  cropName: string;
-  variety: string;
-  qualityGrade: any;
-  quantity: string;
-  currentBid?: any;
-  auctionEnd: any;
-  sellerName: string;
-  contactInfo: string;
-  location: string;
-  shippingOptions: any;
-  pickupOptions: any;
-  description: string;
-  certifications: any;
-  primary_image?: string;
-  pictures?: any;
-  crop_listings?: any;
+    course_name: any;
+    user_id: number;
+    description: string;
 }
 
-export interface Farming_coursesInput {
-  title?: string;
-  description?: string;
-  image_url?: string;
-  farming_courses?: any;
+export interface CropListingsInput {
+    cropName: any;
+    variety: any;
+    qualityGrade: any;
+    quantity: any;
+    auctionEnd: Date;
+    sellerName: any;
+    contactInfo: any;
+    location: any;
+    shippingOptions: any;
+    pickupOptions: any;
+    description: string;
+    certifications: any;
 }
 
-export interface Forum_commentsInput {
-  topic_id: number;
-  message: string;
-  repliedBy: string;
-  date?: string;
-  replyImageURL?: string;
-  replierId?: string;
+export interface ForumCommentsInput {
+    topic_id: number;
+    message: string;
+    repliedBy: any;
 }
 
-export interface Forum_topicsInput {
-  subject: string;
-  message: string;
-  startedBy: string;
-  date?: string;
-  userId?: string;
-  imageURL?: string;
-  forum_topics?: any;
+export interface ForumTopicsInput {
+    subject: any;
+    message: string;
+    startedBy: any;
 }
 
 export interface ResourcesInput {
-  topic_id: number;
-  url: string;
-  rank?: number;
+    topic_id: number;
+    url: any;
 }
+

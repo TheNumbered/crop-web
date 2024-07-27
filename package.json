@@ -1,0 +1,13 @@
+{
+  "name": "crop-web",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "frontend" : "cd frontend && pnpm dev",
+    "backend" : "cd backend && pnpm dev",
+    "install": "cd frontend && pnpm install && cd ../backend && pnpm install"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

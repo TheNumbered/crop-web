@@ -49,7 +49,7 @@ const HomePage: React.FC = () => {
   return (
     <div className="homepage">
       <div className="content">
-        <h1>Welcome to Your Crop Web</h1>
+        <h1>Welcome to Crop Web</h1>
         <p>Helping farmers diagnose and manage their crops and livestock.</p>
         <button className="cta-button">Get Started</button>
         <div className="weather">

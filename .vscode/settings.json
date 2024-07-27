@@ -14,7 +14,8 @@
     "**/*config*": true,
     "**/.es*": true,
 
-    "**/public": true
+    "**/public": true,
+    "**/db-utility.js": true,
   },
   "editor.codeActionsOnSave": {
     "source.organizeImports": "always"

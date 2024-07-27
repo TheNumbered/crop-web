@@ -8,11 +8,11 @@ import {
 } from "react-router-dom";
 import { MainLayout } from "./components";
 import { NotFoundPage, SignInPage } from "./pages";
-import { CommunityForum } from "./pages/consultation/forum";
 import CoursePage from "./pages/courses/course-page";
 import CoursesPage from "./pages/courses/courses";
 import CropAiPage from "./pages/crop-ai";
 import Dashboard from "./pages/dashboard";
+import { CommunityForum } from "./pages/forum/forum";
 import MarketItem from "./pages/market/item";
 import MarketPage from "./pages/market/market";
 import Widget from "./pages/market/Widget";

@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.39, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: crop_web
+-- Host: localhost    Database: crop_web
 -- ------------------------------------------------------
--- Server version	8.0.36
+-- Server version	8.0.39
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -105,32 +105,6 @@ INSERT INTO `crop_listings` VALUES (1,'Tomatoes','Roma','A','1000 kg',100.00,'20
 UNLOCK TABLES;
 
 --
--- Table structure for table `farming_courses`
---
-
-DROP TABLE IF EXISTS `farming_courses`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `farming_courses` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) DEFAULT NULL,
-  `description` text,
-  `image_url` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `farming_courses`
---
-
-LOCK TABLES `farming_courses` WRITE;
-/*!40000 ALTER TABLE `farming_courses` DISABLE KEYS */;
-INSERT INTO `farming_courses` VALUES (1,'Sustainable Farming','Learn the basics of sustainable farming practices.','https://via.placeholder.com/150'),(2,'Advanced Crop Management','Explore advanced techniques for crop management and soil health.','https://via.placeholder.com/150'),(3,'Organic Farming Techniques','Understand the principles and practices of organic farming.','https://via.placeholder.com/150'),(4,'Farm Machinery and Equipment','Get hands-on training with farm machinery and equipment.','https://via.placeholder.com/150'),(5,'Agricultural Economics','Study the economic aspects of agriculture and farm management.','https://via.placeholder.com/150');
-/*!40000 ALTER TABLE `farming_courses` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `forum_comments`
 --
 
@@ -226,4 +200,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-07-27 14:21:09
+-- Dump completed on 2024-07-27 19:32:50
