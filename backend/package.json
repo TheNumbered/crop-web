@@ -6,7 +6,6 @@
   "scripts": {
     "dev": "nodemon server.js",
     "start": "node server.js",
-    "test": "vitest",
     "coverage": "vitest run --coverage",
     "db": "node db-utility.js"
   },
