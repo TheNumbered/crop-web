@@ -21,7 +21,7 @@ const CreateCropListing: React.FC = () => {
     pictures: "",
   });
 
-  const { mutate } = useCreateMutation({
+  const { mutate : createAdvert } = useCreateMutation({
     resource: "crop_listings",
     invalidateKeys: ["crop_listings"],
   });
@@ -36,7 +36,7 @@ const CreateCropListing: React.FC = () => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    mutate({
+    createAdvert({
       ...formData,
       shippingOptions: JSON.stringify(formData.shippingOptions.split(",")),
       pickupOptions: JSON.stringify(formData.pickupOptions.split(",")),
