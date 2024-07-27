@@ -2,10 +2,10 @@ import { useAuth } from "@clerk/clerk-react";
 import { useQuery } from "@tanstack/react-query";
 import { baseUrl } from "..";
 
-export const getQuery = (resource: string) => {
+export const useGetQuery = <T>(resource: string) => {
   const { getToken } = useAuth();
 
-  return useQuery({
+  return useQuery<T>({
     queryKey: [resource],
     queryFn: async () => fetch(`${baseUrl}/${resource}`, {
       headers: {

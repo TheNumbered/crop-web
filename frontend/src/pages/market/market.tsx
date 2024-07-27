@@ -1,3 +1,5 @@
+import { useGetQuery } from '@/dataprovider';
+import { CropListings } from '@/interfaces';
 import { Search } from '@mui/icons-material';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
@@ -5,47 +7,45 @@ import { Box, Card, CardContent, CardMedia, Grid, TextField, Typography } from '
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const marketItems = [
-    {
-        id: 1,
-        name: 'Corn',
-        image: 'https://via.placeholder.com/150',
-        highestBid: 150,
-        description: 'Fresh and organic corn directly from the farm.',
-        location: 'Farmville, USA',
-        timeLeft: '2h 30m',
-    },
-    {
-        id: 2,
-        name: 'Wheat',
-        image: 'https://via.placeholder.com/150',
-        highestBid: 200,
-        description: 'High-quality wheat perfect for baking and cooking.',
-        location: 'Grainland, USA',
-        timeLeft: '1d 4h',
-    },
-    {
-        id: 3,
-        name: 'Soybeans',
-        image: 'https://via.placeholder.com/150',
-        highestBid: 250,
-        description: 'Organic soybeans rich in protein and nutrients.',
-        location: 'Soytown, USA',
-        timeLeft: '3h 15m',
-    },
-    // Add more items as needed
-];
+const formatTimeLeft = (endTime: string|Date): string => {
+    const now = new Date();
+    const end = new Date(endTime);
+    const diff = end.getTime() - now.getTime();
+
+    if (diff <= 0) {
+      return "00:00:00";
+    }
+
+    const hours = Math.floor(diff / (1000 * 60 * 60));
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+    return [hours, minutes, seconds]
+      .map((value) => String(value).padStart(2, "0"))
+      .join(":");
+};
 
 const MarketPage: React.FC = () => {
     const [searchTerm, setSearchTerm] = React.useState('');
+    const { data, isLoading, isError } = useGetQuery<CropListings[]>('market');
 
-    const filteredItems = marketItems.filter((item) =>
-        item.name.toLowerCase().includes(searchTerm.toLowerCase())
-    );
     const navigate = useNavigate();
+
     const handleOnClick = (id: number) => {
-       navigate(`/market/${id}`);
+        navigate(`/market/${id}`);
     };
+
+    if (isLoading) {
+        return <div>Loading...</div>;
+    }
+
+    if (isError) {
+        return <div>Error...</div>;
+    }
+
+    const filteredItems = data?.filter((item) =>
+        item.cropName.toLowerCase().includes(searchTerm.toLowerCase())
+    ) || [];
 
     return (
         <Box sx={{ p: 3 }}>
@@ -68,14 +68,15 @@ const MarketPage: React.FC = () => {
                             <CardMedia
                                 component="img"
                                 height="150"
-                                image={item.image}
+                                image={item.primaryImage}
                                 sx={{ objectFit: 'cover', borderRadius: '8px 8px 0 0' }}
-                                alt={item.name}
+                                alt={item.cropName}
                             />
                             <CardContent sx={{ flexGrow: 1 }}>
                                 <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}>
-                                    <Typography variant="h6">{item.name}</Typography>
-                                    <Typography variant="h6">R {item.highestBid}</Typography>
+                                    <Typography variant="h6">{item.cropName}</Typography>
+                                    {/* @ts-ignore */}
+                                    <Typography variant="h6">R {item.currentBid}</Typography>
                                 </Box>
                                 <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
                                     {item.description}
@@ -90,7 +91,7 @@ const MarketPage: React.FC = () => {
                                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
                                         <AccessTimeIcon sx={{ mr: 1 }} />
                                         <Typography variant="body2" color="text.secondary">
-                                            {item.timeLeft}
+                                            {formatTimeLeft(item.auctionEnd)}
                                         </Typography>
                                     </Box>
                                 </Box>

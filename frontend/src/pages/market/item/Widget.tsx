@@ -1,7 +1,7 @@
 import { Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import Header from "../../components/header";
-import { CropDetails } from "../../interfaces/index";
+import Header from "../../../components/header";
+import { CropDetails } from "../../../interfaces/index";
 import { CropDetailsCard } from "./CropDetailsCard";
 import { ImageModal } from "./ImageModal";
 

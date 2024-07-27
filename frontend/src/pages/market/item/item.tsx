@@ -1,3 +1,5 @@
+import { useGetByIdQuery } from "@/dataprovider";
+import { CropListings } from "@/interfaces";
 import {
   Box,
   Button,
@@ -9,8 +11,22 @@ import {
   Typography,
 } from "@mui/material";
 import React from "react";
+import { useParams } from "react-router-dom";
 
 const MarketItem: React.FC = () => {
+  const { id } = useParams<{ id: string }>();
+  const { data, isLoading, isError } = useGetByIdQuery<CropListings[]>("market", id);
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (isError || !data) {
+    return <div>Error...</div>;
+  }
+
+  const item = data[0];
+
   return (
     <>
       <Card
@@ -28,18 +44,18 @@ const MarketItem: React.FC = () => {
             <CardMedia
               component="img"
               height="400"
-              image="https://placehold.co/600x400?text=Tomatoes+Image"
-              alt="Tomatoes Image"
+              image={item.primaryImage}
+              alt={item.cropName}
               sx={{ borderRadius: 2 }}
             />
             <Grid container spacing={1} mt={1}>
-              {Array.from({ length: 5 }).map((_, index) => (
+              {item.pictures?.map((picture: string, index: number) => (
                 <Grid item xs={4} sm={2.4} key={index}>
                   <CardMedia
                     component="img"
                     height="100"
-                    image="https://placehold.co/100x100?text=Thumbnail"
-                    alt="Thumbnail"
+                    image={picture}
+                    alt={`Thumbnail ${index + 1}`}
                     sx={{ borderRadius: 2 }}
                   />
                 </Grid>
@@ -49,11 +65,10 @@ const MarketItem: React.FC = () => {
           <Grid item xs={12} md={4}>
             <CardContent>
               <Typography variant="h5" component="div" fontWeight="bold">
-                Fresh Roma Tomatoes
+                {item.cropName}
               </Typography>
               <Typography variant="body2" color="text.secondary">
-                Fresh Roma tomatoes from my farm. They are ripe and ready for
-                sale.
+                {item.description}
               </Typography>
               <Box mt={2}>
                 <Grid container spacing={1}>
@@ -63,7 +78,7 @@ const MarketItem: React.FC = () => {
                     </Typography>
                   </Grid>
                   <Grid item xs={6}>
-                    <Typography variant="body2">Tomatoes</Typography>
+                    <Typography variant="body2">{item.cropName}</Typography>
                   </Grid>
                   <Grid item xs={6}>
                     <Typography variant="body2" fontWeight="bold">
@@ -71,7 +86,7 @@ const MarketItem: React.FC = () => {
                     </Typography>
                   </Grid>
                   <Grid item xs={6}>
-                    <Typography variant="body2">Roma</Typography>
+                    <Typography variant="body2">{item.variety}</Typography>
                   </Grid>
                   <Grid item xs={6}>
                     <Typography variant="body2" fontWeight="bold">
@@ -79,7 +94,7 @@ const MarketItem: React.FC = () => {
                     </Typography>
                   </Grid>
                   <Grid item xs={6}>
-                    <Typography variant="body2">A</Typography>
+                    <Typography variant="body2">{item.qualityGrade}</Typography>
                   </Grid>
                   <Grid item xs={6}>
                     <Typography variant="body2" fontWeight="bold">
@@ -87,7 +102,7 @@ const MarketItem: React.FC = () => {
                     </Typography>
                   </Grid>
                   <Grid item xs={6}>
-                    <Typography variant="body2">1000 kg</Typography>
+                    <Typography variant="body2">{item.quantity}</Typography>
                   </Grid>
                   <Grid item xs={6}>
                     <Typography variant="body2" fontWeight="bold">
@@ -95,7 +110,7 @@ const MarketItem: React.FC = () => {
                     </Typography>
                   </Grid>
                   <Grid item xs={6}>
-                    <Typography variant="body2">John Doe</Typography>
+                    <Typography variant="body2">{item.sellerName}</Typography>
                   </Grid>
                   <Grid item xs={6}>
                     <Typography variant="body2" fontWeight="bold">
@@ -111,7 +126,7 @@ const MarketItem: React.FC = () => {
                     </Typography>
                   </Grid>
                   <Grid item xs={6}>
-                    <Typography variant="body2">0736462828</Typography>
+                    <Typography variant="body2">{item.contactInfo}</Typography>
                   </Grid>
                   <Grid item xs={6}>
                     <Typography variant="body2" fontWeight="bold">
@@ -119,7 +134,7 @@ const MarketItem: React.FC = () => {
                     </Typography>
                   </Grid>
                   <Grid item xs={6}>
-                    <Typography variant="body2">Nairobi, Kenya</Typography>
+                    <Typography variant="body2">{item.location}</Typography>
                   </Grid>
                   <Grid item xs={6}>
                     <Typography variant="body2" fontWeight="bold">
@@ -127,7 +142,7 @@ const MarketItem: React.FC = () => {
                     </Typography>
                   </Grid>
                   <Grid item xs={6}>
-                    <Typography variant="body2">Courier, Pickup</Typography>
+                    <Typography variant="body2">{"Fix Me"}</Typography>
                   </Grid>
                   <Grid item xs={6}>
                     <Typography variant="body2" fontWeight="bold">
@@ -135,7 +150,7 @@ const MarketItem: React.FC = () => {
                     </Typography>
                   </Grid>
                   <Grid item xs={6}>
-                    <Typography variant="body2">Farm, Market</Typography>
+                    <Typography variant="body2">{"Fix Me Too"}</Typography>
                   </Grid>
                 </Grid>
               </Box>
@@ -150,7 +165,7 @@ const MarketItem: React.FC = () => {
                 >
                   <Typography variant="body2">Current Bid</Typography>
                   <Typography variant="h6" fontWeight="bold">
-                    R100
+                    R{item.currentBid}
                   </Typography>
                 </Grid>
                 <Grid
@@ -161,12 +176,12 @@ const MarketItem: React.FC = () => {
                 >
                   <Typography variant="body2">Time Left:</Typography>
                   <Typography variant="h6" fontWeight="bold">
-                    00:01:52
+                    {new Date(item.auctionEnd).toLocaleTimeString()}
                   </Typography>
                 </Grid>
                 <TextField
                   variant="outlined"
-                  placeholder="Enter Your Bid (Minimum R101)"
+                  placeholder={`Enter Your Bid (Minimum R${item.currentBid + 1})`}
                   fullWidth
                   margin="normal"
                   sx={{ mt: 2 }}

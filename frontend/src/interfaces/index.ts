@@ -1,22 +1,32 @@
-export interface CourseTopics {
+export type CourseCommunityUrls = {
     id: number;
-    course_id: number;
-    my_resources: any;
+    topicId: number;
+    url: any;
+    rank: number;
+    title: any;
 }
 
-export interface Courses {
+export type CourseTopics = {
     id: number;
-    course_name: any;
-    user_id: number;
+    courseId: number;
+    urls: any;
+}
+
+export type Courses = {
+    id: number;
+    courseName: any;
+    userId: number;
     description: string;
+    imageUrl: any;
 }
 
-export interface CropListings {
+export type CropListings = {
     id: number;
     cropName: any;
     variety: any;
     qualityGrade: any;
     quantity: any;
+    currentBid: any;
     auctionEnd: Date;
     sellerName: any;
     contactInfo: any;
@@ -25,44 +35,55 @@ export interface CropListings {
     pickupOptions: any;
     description: string;
     certifications: any;
+    primaryImage: any;
+    pictures: any;
 }
 
-export interface ForumComments {
+export type ForumComments = {
     id: number;
     topic_id: number;
     message: string;
     repliedBy: any;
+    date: any;
+    replyImageURL: any;
+    replierId: any;
 }
 
-export interface ForumTopics {
+export type ForumTopics = {
     id: number;
     subject: any;
     message: string;
     startedBy: any;
+    date: any;
+    userId: any;
+    imageURL: any;
 }
 
-export interface Resources {
-    id: number;
-    topic_id: number;
+export type CourseCommunityUrlsInput = {
+    topicId: number;
     url: any;
+    rank: number;
+    title: any;
 }
 
-export interface CourseTopicsInput {
-    course_id: number;
-    my_resources: any;
+export type CourseTopicsInput = {
+    courseId: number;
+    urls: any;
 }
 
-export interface CoursesInput {
-    course_name: any;
-    user_id: number;
+export type CoursesInput = {
+    courseName: any;
+    userId: number;
     description: string;
+    imageUrl: any;
 }
 
-export interface CropListingsInput {
+export type CropListingsInput = {
     cropName: any;
     variety: any;
     qualityGrade: any;
     quantity: any;
+    currentBid: any;
     auctionEnd: Date;
     sellerName: any;
     contactInfo: any;
@@ -71,22 +92,25 @@ export interface CropListingsInput {
     pickupOptions: any;
     description: string;
     certifications: any;
+    primaryImage: any;
+    pictures: any;
 }
 
-export interface ForumCommentsInput {
+export type ForumCommentsInput = {
     topic_id: number;
     message: string;
     repliedBy: any;
+    date: any;
+    replyImageURL: any;
+    replierId: any;
 }
 
-export interface ForumTopicsInput {
+export type ForumTopicsInput = {
     subject: any;
     message: string;
     startedBy: any;
-}
-
-export interface ResourcesInput {
-    topic_id: number;
-    url: any;
+    date: any;
+    userId: any;
+    imageURL: any;
 }
 

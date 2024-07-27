@@ -1,5 +1,5 @@
 import { Card, Grid } from "@mui/material";
-import { CropDetails } from "../../interfaces/index";
+import { CropDetails } from "../../../interfaces/index";
 import { BiddingInfo } from "./BiddingInfo";
 import { CropImages } from "./CropImages";
 import { CropInfo } from "./CropInfo";
