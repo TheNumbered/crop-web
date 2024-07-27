@@ -1,0 +1,94 @@
+/* General styling for the entire app */
+.dashboard {
+  font-family: 'Montserrat', sans-serif;
+  color: #333; /* Default text color */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: url(`/images/background.jpg`) no-repeat center center fixed; /* Updated background */
+  background-size: cover; /* Ensure the image covers the entire element */
+}
+
+/* Header styling for a modern app feel */
+.dashboard-header {
+  background: rgba(156, 154, 143, 0.7); /* Semi-transparent sage green background */
+  color: #fff;
+  text-align: center;
+  padding: 2rem 1rem;
+  border-bottom: 1px solid #ddd;
+}
+
+.dashboard-header h1 {
+  font-size: 2.5rem;
+  margin: 0;
+}
+
+.dashboard-header p {
+  font-size: 1.2rem;
+  margin-top: 0.5rem;
+}
+
+/* Main content area with modern app styling */
+.dashboard-content {
+  flex: 1;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.8); /* Semi-transparent background for content */
+  border-radius: 10px; /* Rounded corners for the content area */
+}
+
+.farm-image img {
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-info {
+  text-align: center;
+  max-width: 800px;
+  margin-top: 1.5rem;
+}
+
+.dashboard-info h2 {
+  color: #9C9A8F; /* Sage green */
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.dashboard-info p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background: #027173; /* Complementary color for call-to-action */
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.btn:hover {
+  background: #024f52;
+}
+
+/* Footer styling */
+.dashboard-footer {
+  background: #f8f8f8;
+  color: #333;
+  text-align: center;
+  padding: 1rem;
+  border-top: 1px solid #ddd;
+}
+
+
+
+ 
