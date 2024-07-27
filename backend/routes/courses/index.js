@@ -1,9 +1,9 @@
 import express from 'express';
-import { ClerkExpressRequireAuth } from '@clerk/clerk-sdk-node';
 const CoursesRouter = express.Router();
 
+// GET all courses
 CoursesRouter.get("/", (req, res, next) => {
-    const query = 'SELECT * FROM farming_courses';
+    const query = 'SELECT * FROM courses';
 
     req.db.query(query, (err, results) => {
         if (err) {
@@ -13,8 +13,9 @@ CoursesRouter.get("/", (req, res, next) => {
     });
 });
 
-CoursesRouter.get("/:id",  (req, res, next) => {
-    const query = 'SELECT * FROM farming_courses WHERE id = ?';
+// GET a specific course by ID
+CoursesRouter.get("/:id", (req, res, next) => {
+    const query = 'SELECT * FROM courses WHERE id = ?';
     const params = [req.params.id];
 
     req.db.query(query, params, (err, results) => {
@@ -26,17 +27,6 @@ CoursesRouter.get("/:id",  (req, res, next) => {
         }
         res.json(results[0]);
     });
-}
-);
+});
 
-CoursesRouter.post("/", ClerkExpressRequireAuth(), (req, res, next) => {
-    const { title, description, imageUrl } = req.body;
-    const query = 'INSERT INTO farming_courses (title, description, image_url) VALUES (?, ?, ?)';
-    
-    req.db.query(query, [title, description, imageUrl], (err, results) => {
-        if (err) {
-            return next(err);
-        }
-        res.status(201).json({ message: "Course added" });
-    });
-})
+export default CoursesRouter;

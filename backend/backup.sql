@@ -16,6 +16,34 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `course_community_urls`
+--
+
+DROP TABLE IF EXISTS `course_community_urls`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `course_community_urls` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `topicId` int NOT NULL,
+  `url` varchar(255) NOT NULL,
+  `rank` int DEFAULT '0',
+  `title` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `topicId` (`topicId`),
+  CONSTRAINT `course_community_urls_ibfk_1` FOREIGN KEY (`topicId`) REFERENCES `course_topics` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `course_community_urls`
+--
+
+LOCK TABLES `course_community_urls` WRITE;
+/*!40000 ALTER TABLE `course_community_urls` DISABLE KEYS */;
+/*!40000 ALTER TABLE `course_community_urls` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `course_topics`
 --
 
@@ -24,12 +52,12 @@ DROP TABLE IF EXISTS `course_topics`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `course_topics` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `course_id` int NOT NULL,
-  `my_resources` json NOT NULL,
+  `courseId` int NOT NULL,
+  `urls` json NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `course_id` (`course_id`),
-  CONSTRAINT `course_topics_ibfk_1` FOREIGN KEY (`course_id`) REFERENCES `courses` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  KEY `courseId` (`courseId`),
+  CONSTRAINT `course_topics_ibfk_1` FOREIGN KEY (`courseId`) REFERENCES `courses` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,6 +66,7 @@ CREATE TABLE `course_topics` (
 
 LOCK TABLES `course_topics` WRITE;
 /*!40000 ALTER TABLE `course_topics` DISABLE KEYS */;
+INSERT INTO `course_topics` VALUES (1,1,'[{\"title\": \"Soil Health Basics\", \"content\": \"Content about soil health\"}]'),(2,2,'[{\"title\": \"Advanced Techniques\", \"content\": \"Content about advanced techniques\"}]'),(3,3,'[{\"title\": \"Sustainability Practices\", \"content\": \"Content about sustainability practices\"}]');
 /*!40000 ALTER TABLE `course_topics` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -50,11 +79,12 @@ DROP TABLE IF EXISTS `courses`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `courses` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `course_name` varchar(255) NOT NULL,
-  `user_id` int NOT NULL,
+  `courseName` varchar(255) NOT NULL,
+  `userId` int NOT NULL,
   `description` text NOT NULL,
+  `imageUrl` varchar(250) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -63,6 +93,7 @@ CREATE TABLE `courses` (
 
 LOCK TABLES `courses` WRITE;
 /*!40000 ALTER TABLE `courses` DISABLE KEYS */;
+INSERT INTO `courses` VALUES (1,'Introduction to Organic Farming',1,'This course covers the basics of organic farming, including soil health, crop rotation, and pest management.',NULL),(2,'Advanced Crop Cultivation',2,'This course dives deep into advanced techniques for cultivating various crops.',NULL),(3,'Sustainable Agriculture Practices',3,'Learn how to implement sustainable agriculture practices to enhance productivity and protect the environment.',NULL),(4,'Farm Management Basics',4,'An introductory course on effective farm management strategies and techniques.',NULL),(5,'Hydroponics for Beginners',1,'This course teaches the fundamentals of hydroponics for growing plants without soil.',NULL);
 /*!40000 ALTER TABLE `courses` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -88,7 +119,7 @@ CREATE TABLE `crop_listings` (
   `pickupOptions` json NOT NULL,
   `description` text NOT NULL,
   `certifications` json NOT NULL,
-  `primary_image` varchar(255) DEFAULT NULL,
+  `primaryImage` varchar(255) DEFAULT NULL,
   `pictures` json DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -163,33 +194,6 @@ LOCK TABLES `forum_topics` WRITE;
 INSERT INTO `forum_topics` VALUES (1,'Welcome to the Forum','Feel free to ask questions, share your experiences, and connect with others.','Admin','2024-07-01 10:00:00',NULL,'https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2ltYWdlcy5jbGVyay5kZXYvb2F1dGhfZ2l0aHViL2ltZ18yamVDZWg5U3JlZ01KbGNMWDhwU3dFWDd3ekQifQ'),(2,'How to use the site','Check out our FAQ section to learn more about how to navigate and use the site.','Admin','2024-07-02 09:00:00',NULL,'https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2ltYWdlcy5jbGVyay5kZXYvb2F1dGhfZ2l0aHViL2ltZ18yamVDZWg5U3JlZ01KbGNMWDhwU3dFWDd3ekQifQ'),(3,'New features coming soon','We\'re excited to announce some new features that will be rolled out in the next few weeks. Stay tuned!','Admin','2024-07-03 08:00:00',NULL,'https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2ltYWdlcy5jbGVyay5kZXYvb2F1dGhfZ2l0aHViL2ltZ18yamVDZWg5U3JlZ01KbGNMWDhwU3dFWDd3ekQifQ'),(38,'Inertia','Inertia is such a fascinating concept. It essentially describes the tendency of an object to resist changes to its state of motion.\nNewton\'s First Law of Motion encapsulates this idea:\nan object at rest will stay at rest, and an object in motion will stay in motion unless acted upon by an external force.','Lucy Tlake','2024-07-24 09:44:30','user_2jggZfWuDj4KvRw8A2Q1BdzoQLe','https://img.clerk.com/eyJ0eXBlIjoiZGVmYXVsdCIsImlpZCI6Imluc18yamVDNGJMV2RDZnZzQmx3NWV1UFljZnlpRUYiLCJyaWQiOiJ1c2VyXzJqZ2daZld1RGo0S3ZSdzhBMlExQmR6b1FMZSIsImluaXRpYWxzIjoiTFQifQ'),(39,'sooomething','as','Sisekelo Ngcobo','2024-07-25 19:04:52','user_2jeCPwBFVlDiaGL3BcFNon7cMAX','https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2ltYWdlcy5jbGVyay5kZXYvb2F1dGhfZ29vZ2xlL2ltZ18yamVDUHZRZ1ZIREk5NTNUZnlRNXNRTUp5eEsifQ');
 /*!40000 ALTER TABLE `forum_topics` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `resources`
---
-
-DROP TABLE IF EXISTS `resources`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `resources` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `topic_id` int NOT NULL,
-  `url` varchar(255) NOT NULL,
-  `rank` int DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `topic_id` (`topic_id`),
-  CONSTRAINT `resources_ibfk_1` FOREIGN KEY (`topic_id`) REFERENCES `course_topics` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `resources`
---
-
-LOCK TABLES `resources` WRITE;
-/*!40000 ALTER TABLE `resources` DISABLE KEYS */;
-/*!40000 ALTER TABLE `resources` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -200,4 +204,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-07-27 19:32:50
+-- Dump completed on 2024-07-27 23:56:59

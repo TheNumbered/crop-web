@@ -12,7 +12,8 @@ function readMySQLDump(filePath) {
 function parseMySQLDump(mysqlDump) {
     const tables = [];
     const tableRegex = /CREATE TABLE `(\w+)` \(([\s\S]+?)\) ENGINE=/g;
-    const columnRegex = /`(\w+)` (\w+\(?\d*?\)?) (NOT NULL|NULL)/g;
+    // const columnRegex = /`(\w+)` (\w+\(?\d*?\)?) (NOT NULL|)/g;
+    const columnRegex = /`(\w+)` (\w+(?:\(\d+(?:,\d+)?\))?) (NOT NULL|)/g;
 
     let match;
     while ((match = tableRegex.exec(mysqlDump)) !== null) {
@@ -26,7 +27,7 @@ function parseMySQLDump(mysqlDump) {
             const columnName = columnMatch[1];
             const columnType = columnMatch[2];
             const isNullable = columnMatch[3] === 'NULL';
-
+            if (columnType === 'FOREIGN') continue; // Skip foreign key constraints
             columnsArray.push({
                 name: columnName,
                 type: columnType,
@@ -38,6 +39,7 @@ function parseMySQLDump(mysqlDump) {
             columns: columnsArray
         });
     }
+    
     return tables;
 }
 
@@ -93,7 +95,7 @@ function generateInterfaces(tables) {
     let output = '';
 
     tables.forEach(table => {
-        output += `export interface ${capitalizeFirstLetter(table.name)} {\n`;
+        output += `export type ${capitalizeFirstLetter(table.name)} = {\n`;
         table.columns.forEach(column => {
             const columnName = column.name;
             const nullableSymbol = column.nullable ? '?' : '';
@@ -111,7 +113,7 @@ function generateInputInterfaces(tables) {
     let output = '';
 
     tables.forEach(table => {
-        output += `export interface ${capitalizeFirstLetter(table.name)}Input {\n`;
+        output += `export type ${capitalizeFirstLetter(table.name)}Input = {\n`;
         table.columns.forEach(column => {
             if (column.name !== 'id') { // Exclude auto-incremented primary key from input interfaces
                 const columnName = column.name;
