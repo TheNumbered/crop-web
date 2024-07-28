@@ -1,6 +1,7 @@
 import CameraAltIcon from '@mui/icons-material/CameraAlt';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { Box, Button, Card, CardContent, CardMedia, Grid, Typography, useMediaQuery } from '@mui/material';
+import { Theme, useTheme } from '@mui/material/styles';
 import * as tf from '@tensorflow/tfjs';
 import React, { useEffect, useState } from 'react';
 
@@ -11,8 +12,8 @@ const CropAiPage: React.FC = () => {
   const [confidence, setConfidence] = useState<number | null>(null);
   const [remedy, setRemedy] = useState<string>('');
 
-  //@ts-ignore
-  const isMobile = useMediaQuery(theme => theme.breakpoints.down('sm'));
+  const theme = useTheme();
+  const isMobile = useMediaQuery((theme: Theme) => theme.breakpoints.down('sm'));
 
   useEffect(() => {
     const initializeModel = async () => {
@@ -52,27 +53,26 @@ const CropAiPage: React.FC = () => {
 
     const tensorImg = tf.browser.fromPixels(imgElement).resizeNearestNeighbor([224, 224]).toFloat().expandDims();
     const tensorImg_scaled = tensorImg.div(tf.scalar(255));
-    //@ts-ignore
-    const prediction = await model.predict(tensorImg_scaled).data() as Float32Array;
+    const prediction = (await model.predict(tensorImg_scaled) as tf.Tensor).dataSync() as Float32Array;
 
     const data = await fetchData();
     const predictedClass = tf.argMax(prediction);
     const classIdx = Array.from(predictedClass.dataSync())[0];
 
-    const predictedLabel = data[classIdx].replace(/_/g, ' '); // Remove underscores
+    const predictedLabel = data[classIdx].replace(/_/g, ' '); // Remove underscores for display
     setPredictedLabel(predictedLabel);
     setConfidence(parseFloat((prediction[classIdx] * 100).toFixed(2)));
 
-    if (predictedLabel.includes('healthy')) {
+    const rawLabel = data[classIdx]; // Use raw label with underscores for fetching remedy
+    if (rawLabel.includes('healthy')) {
       setRemedy('No remedy needed. Your plant is healthy.');
       speak(`Based on the diagnosis with ${confidence}% confidence, your plant is healthy.`);
       return;
-    }
-    else {
+    } else {
       speak(`The plant is infected with ${predictedLabel} with ${confidence}% confidence.`);
     }
 
-    const remedyText = await fetchRemedy(predictedLabel);
+    const remedyText = await fetchRemedy(rawLabel); // Fetch remedy using raw label
     setRemedy(remedyText);
     speak(`The remedy for ${predictedLabel} is: ${remedyText}`);
   };
@@ -148,7 +148,7 @@ const CropAiPage: React.FC = () => {
               Confidence
             </Typography>
             <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-              {confidence !== null ? `${confidence}% SURE` : ''}
+              {confidence !== null ? `${confidence}% Confident` : ''}
             </Typography>
             <Typography variant="h6" component="div" sx={{ mb: 1 }}>
               Recommended Remedies
