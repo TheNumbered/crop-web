@@ -3,11 +3,16 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "frontend" : "cd frontend && pnpm dev",
-    "backend" : "cd backend && pnpm dev",
+    "frontend": "cd frontend && pnpm dev",
+    "backend": "cd backend && pnpm dev",
     "install": "cd frontend && pnpm install && cd ../backend && pnpm install"
   },
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "axios": "^1.7.2",
+    "react-image-lightbox": "^5.1.4",
+    "react-swipeable-views": "^0.14.0"
+  }
 }

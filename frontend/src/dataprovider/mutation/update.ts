@@ -14,16 +14,16 @@ export const useUpdateMutation = ({
   const { getToken } = useAuth();
   const queryClient = useQueryClient();
 
-  
   contentType = contentType || "application/json";
-  const ContentType = contentType === "empty" ? {}: { "Content-Type": contentType };
+  const ContentType =
+    contentType === "empty" ? {} : { "Content-Type": contentType };
 
   return useMutation({
     mutationFn: async ({
       id,
       newValues,
     }: {
-      id: string;
+      id: any;
       newValues: Record<string, any>;
     }) =>
       //@ts-ignore
@@ -35,7 +35,10 @@ export const useUpdateMutation = ({
           ...ContentType,
         },
         //@ts-ignore
-        body: contentType === "application/json" ? JSON.stringify(newValues) : newValues,
+        body:
+          contentType === "application/json"
+            ? JSON.stringify(newValues)
+            : newValues,
       }).then((response) => {
         if (!response.ok) {
           throw new Error("Failed to update resource");
