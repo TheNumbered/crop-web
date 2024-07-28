@@ -48,6 +48,7 @@ const HomePage: React.FC = () => {
 
   return (
     <div className="homepage">
+      <div className="background-image"></div>
       <div className="content">
         <h1>Welcome to Crop Web</h1>
         <p>Helping farmers diagnose and manage their crops and livestock.</p>
@@ -64,6 +65,47 @@ const HomePage: React.FC = () => {
           ) : (
             <p>Loading weather data...</p>
           )}
+        </div>
+      </div>
+      <div className="boxes">
+        <div className="box">
+          <img src="/ardobe.png" alt="Fresh Vegetables" className="box-img" />
+          <h2 className="box-title">Fresh Vegetables</h2>
+          <p className="box-description">
+          Enjoy the freshest vegetables,  ripeness. Our organic, locally sourced produce offers vibrant flavors and nutrients to nourish your body and soul.
+         
+          </p>
+          <button className="box-button">Learn More</button>
+        </div>
+
+
+        <div className="box">
+          <img src="/theo.png" alt="Organic Products" className="box-img" />
+          <h2 className="box-title">Agricultural Products</h2>
+          <p className="box-description">
+            A small river named Duden flows by their place and supplies it with the necessary regalia. It is a paradisematic country, in which roasted parts.
+          </p>
+          <button className="box-button">Learn More</button>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+        
+        <div className="box">
+          <img src="/organic_foods.png" alt="Organic Products" className="box-img" />
+          <h2 className="box-title">Organic Products</h2>
+          <p className="box-description">
+            A small river named Duden flows by their place and supplies it with the necessary regalia. It is a paradisematic country, in which roasted parts.
+          </p>
+          <button className="box-button">Learn More</button>
         </div>
       </div>
     </div>

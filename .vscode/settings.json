@@ -14,6 +14,12 @@
     "**/*config*": true,
     "**/.es*": true,
 
+<<<<<<< HEAD
+    //"**/public": true
+=======
+    "**/public": true,
+    "**/db-utility.js": true,
+>>>>>>> 4102914ca03d482e70100ea60578d0b2926db21d
     "**/public": true
     // "**/db-utility.js": true
   },
