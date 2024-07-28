@@ -2,7 +2,7 @@ import { useAuth } from "@clerk/clerk-react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { baseUrl } from "..";
 
-export const createMutation = ({
+export const useCreateMutation = ({
   resource,
   invalidateKeys,
   contentType,

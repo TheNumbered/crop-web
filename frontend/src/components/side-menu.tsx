@@ -8,7 +8,7 @@ const menuItems = [
   { icon: <School sx={{ fontSize: { xs: 24, md: 40 } }} />, text: 'Courses', route: '/courses' },
   { icon: <ShoppingBasket sx={{ fontSize: { xs: 24, md: 40 } }} />, text: 'Market', route: '/market' },
   { icon: <Camera sx={{ fontSize: { xs: 24, md: 40 } }} />, text: 'Crop Ai', route: '/crop-ai' },
-  { icon: <Forum sx={{ fontSize: { xs: 24, md: 40 } }} />, text: 'Chat Forum', route: '/forum' },
+  { icon: <Forum sx={{ fontSize: { xs: 24, md: 40 } }} />, text: 'Forum', route: '/forum' },
 ];
 
 const SideMenu: React.FC = () => {

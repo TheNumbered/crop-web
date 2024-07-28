@@ -1,9 +1,8 @@
-import { ClerkExpressRequireAuth } from "@clerk/clerk-sdk-node";
 import express from "express";
 const MarketRouter = express.Router();
 
 MarketRouter.get("/", (req, res, next) => {
-  const query = "SELECT * FROM market_items";
+  const query = "SELECT * FROM crop_listings";
 
   req.db.query(query, (err, results) => {
     if (err) {
@@ -14,35 +13,49 @@ MarketRouter.get("/", (req, res, next) => {
 });
 
 MarketRouter.get("/:id", (req, res, next) => {
-  const query = "SELECT * FROM market_items WHERE id = ?";
-  const params = [req.params.id];
+  const query = "SELECT * FROM crop_listings WHERE id = ?";
+  const id = req.params.id;
 
-  req.db.query(query, params, (err, results) => {
+  req.db.query(query, [id], (err, results) => {
     if (err) {
       return next(err);
     }
-    if (results.length === 0) {
-      return res.status(404).json({ error: "Item not found" });
-    }
-    res.json(results[0]);
+    res.json(results);
   });
 });
 
-MarketRouter.post("/", ClerkExpressRequireAuth(), (req, res, next) => {
-  const { name, image, highestBid, description, location, endDate } = req.body;
-  const query =
-    "INSERT INTO market_items (name, image, highest_bid, description, location, end_date) VALUES (?, ?, ?, ?, ?, ?)";
+// New endpoint to handle bid updates
+MarketRouter.put("/bid/:id", (req, res, next) => {
+  const id = req.params.id;
+  const newBid = req.body.currentBid;
 
-  req.db.query(
-    query,
-    [name, image, highestBid, description, location, endDate],
-    (err, results) => {
-      if (err) {
-        return next(err);
-      }
-      res.status(201).json({ message: "Market item added" });
+  const selectQuery = "SELECT currentBid FROM crop_listings WHERE id = ?";
+  const updateQuery = "UPDATE crop_listings SET currentBid = ? WHERE id = ?";
+
+  req.db.query(selectQuery, [id], (err, results) => {
+    if (err) {
+      return next(err);
     }
-  );
+
+    if (results.length === 0) {
+      return res.status(404).json({ message: "Item not found" });
+    }
+
+    const currentBid = results[0].currentBid;
+
+    if (newBid > currentBid) {
+      req.db.query(updateQuery, [newBid, id], (err) => {
+        if (err) {
+          return next(err);
+        }
+        res.json({ message: "Bid updated successfully" });
+      });
+    } else {
+      res
+        .status(400)
+        .json({ message: "Bid must be higher than the current bid" });
+    }
+  });
 });
 
 export default MarketRouter;

@@ -1,6 +1,6 @@
 import { Box, CardMedia } from "@mui/material";
 import React from "react";
-import { CropDetails } from "../../interfaces/index";
+import { CropDetails } from "../../../interfaces/index";
 
 interface CropImagesProps {
   crop: CropDetails;

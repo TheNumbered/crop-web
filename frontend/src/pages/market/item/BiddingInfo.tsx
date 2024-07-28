@@ -1,5 +1,5 @@
 import { Box, Button, Grid, TextField, Typography } from "@mui/material";
-import { CropDetails } from "../../interfaces/index";
+import { CropDetails } from "../../../interfaces/index";
 
 interface BiddingInfoProps {
   crop: CropDetails;

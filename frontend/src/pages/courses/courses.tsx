@@ -1,21 +1,28 @@
+import { useGetQuery } from '@/dataprovider';
+import { Courses } from '@/interfaces';
 import { Search } from '@mui/icons-material';
 import { Box, Card, CardContent, CardMedia, Grid, TextField, Typography } from '@mui/material';
 import React, { useState } from 'react';
 
-// Mock Data for Farming Courses
-const mockCourses = [
-  { id: 1, title: 'Sustainable Farming', description: 'Learn the basics of sustainable farming practices.', imageUrl: 'https://via.placeholder.com/150' },
-  { id: 2, title: 'Advanced Crop Management', description: 'Explore advanced techniques for crop management and soil health.', imageUrl: 'https://via.placeholder.com/150' },
-  { id: 3, title: 'Organic Farming Techniques', description: 'Understand the principles and practices of organic farming.', imageUrl: 'https://via.placeholder.com/150' },
-  { id: 4, title: 'Farm Machinery and Equipment', description: 'Get hands-on training with farm machinery and equipment.', imageUrl: 'https://via.placeholder.com/150' },
-  { id: 5, title: 'Agricultural Economics', description: 'Study the economic aspects of agriculture and farm management.', imageUrl: 'https://via.placeholder.com/150' },
-];
 
 const CoursesPage: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
 
-  const filteredCourses = mockCourses.filter(course =>
-    course.title.toLowerCase().includes(searchTerm.toLowerCase())
+  const {data, isLoading, isError} = useGetQuery<Courses[]>('courses');
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+  else if (isError) {
+    return <div>Error</div>;
+  }
+
+
+
+  const courses = data || [];
+
+  const filteredCourses = courses.filter(course =>
+    course.courseName.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
@@ -39,12 +46,12 @@ const CoursesPage: React.FC = () => {
               <CardMedia
                 component="img"
                 height="150"
-                image={course.imageUrl}
-                alt={course.title}
+                image={course.imageUrl ?? 'https://via.placeholder.com/150'}
+                alt={course.courseName}
               />
               <CardContent>
                 <Typography variant="h6" gutterBottom>
-                  {course.title}
+                  {course.courseName}
                 </Typography>
                 <Typography variant="body2" color="textSecondary">
                   {course.description}

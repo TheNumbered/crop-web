@@ -8,14 +8,14 @@ import {
 } from "react-router-dom";
 import { MainLayout } from "./components";
 import { NotFoundPage, SignInPage } from "./pages";
-import { CommunityForum } from "./pages/consultation/forum";
-import CoursePage from "./pages/courses/course-page";
 import CoursesPage from "./pages/courses/courses";
 import CropAiPage from "./pages/crop-ai";
 import Dashboard from "./pages/dashboard";
-import MarketItem from "./pages/market/item";
+import { CommunityForum } from "./pages/forum/forum";
+import CreateCropListing from "./pages/market/example-create";
+import MarketItem from "./pages/market/item/item";
+import Widget from "./pages/market/item/Widget";
 import MarketPage from "./pages/market/market";
-import Widget from "./pages/market/Widget";
 
 const App: React.FC = () => {
   const { isLoaded, isSignedIn } = useAuth();
@@ -37,12 +37,12 @@ const App: React.FC = () => {
           >
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/courses" element={<CoursesPage />} />
-            <Route path="/courses/:id" element={<CoursePage />} />
             <Route path="/market" element={<MarketPage />} />
             <Route path="/market/:id" element={<MarketItem />} />
             <Route path="/crop-ai" element={<CropAiPage />} />
             <Route path="/forum" element={<CommunityForum />} />
             <Route path="/widget" element={<Widget />} />
+            <Route path="/example" element={<CreateCropListing/>} />
           </Route>
         )}
         <Route path="/sign-in" element={<SignInPage />} />
