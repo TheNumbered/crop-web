@@ -1,28 +1,22 @@
-import { Box, CardContent, Grid, Typography } from "@mui/material";
+import { CropListings } from "@/interfaces";
+import { Box, Grid, Typography } from "@mui/material";
 import React from "react";
-import { CropDetails } from "../../../interfaces/index";
 
 interface CropInfoProps {
-  crop: CropDetails;
+  item: CropListings;
 }
 
-export const CropInfo: React.FC<CropInfoProps> = ({ crop }) => (
-  <Box mt={2}>
-    <CardContent>
-      <Typography variant="h5" component="div" fontWeight="bold">
-        {crop.cropName} - {crop.variety}
-      </Typography>
-      <Typography variant="body2" color="text.secondary">
-        {crop.description}
-      </Typography>
-      <Grid container spacing={1} mt={2}>
+const CropInfo: React.FC<CropInfoProps> = ({ item }) => {
+  return (
+    <Box mt={2}>
+      <Grid container spacing={1}>
         <Grid item xs={6}>
           <Typography variant="body2" fontWeight="bold">
             Crop Name:
           </Typography>
         </Grid>
         <Grid item xs={6}>
-          <Typography variant="body2">{crop.cropName}</Typography>
+          <Typography variant="body2">{item.cropName}</Typography>
         </Grid>
         <Grid item xs={6}>
           <Typography variant="body2" fontWeight="bold">
@@ -30,7 +24,7 @@ export const CropInfo: React.FC<CropInfoProps> = ({ crop }) => (
           </Typography>
         </Grid>
         <Grid item xs={6}>
-          <Typography variant="body2">{crop.variety}</Typography>
+          <Typography variant="body2">{item.variety}</Typography>
         </Grid>
         <Grid item xs={6}>
           <Typography variant="body2" fontWeight="bold">
@@ -38,7 +32,7 @@ export const CropInfo: React.FC<CropInfoProps> = ({ crop }) => (
           </Typography>
         </Grid>
         <Grid item xs={6}>
-          <Typography variant="body2">{crop.qualityGrade}</Typography>
+          <Typography variant="body2">{item.qualityGrade}</Typography>
         </Grid>
         <Grid item xs={6}>
           <Typography variant="body2" fontWeight="bold">
@@ -46,7 +40,23 @@ export const CropInfo: React.FC<CropInfoProps> = ({ crop }) => (
           </Typography>
         </Grid>
         <Grid item xs={6}>
-          <Typography variant="body2">{crop.quantity}</Typography>
+          <Typography variant="body2">{item.quantity}</Typography>
+        </Grid>
+        <Grid item xs={6}>
+          <Typography variant="body2" fontWeight="bold">
+            Seller:
+          </Typography>
+        </Grid>
+        <Grid item xs={6}>
+          <Typography variant="body2">{item.sellerName}</Typography>
+        </Grid>
+        <Grid item xs={6}>
+          <Typography variant="body2" fontWeight="bold">
+            Seller Rating:
+          </Typography>
+        </Grid>
+        <Grid item xs={6}>
+          <Typography variant="body2">4.5</Typography>
         </Grid>
         <Grid item xs={6}>
           <Typography variant="body2" fontWeight="bold">
@@ -54,7 +64,7 @@ export const CropInfo: React.FC<CropInfoProps> = ({ crop }) => (
           </Typography>
         </Grid>
         <Grid item xs={6}>
-          <Typography variant="body2">{crop.contactInfo}</Typography>
+          <Typography variant="body2">{item.contactInfo}</Typography>
         </Grid>
         <Grid item xs={6}>
           <Typography variant="body2" fontWeight="bold">
@@ -62,7 +72,7 @@ export const CropInfo: React.FC<CropInfoProps> = ({ crop }) => (
           </Typography>
         </Grid>
         <Grid item xs={6}>
-          <Typography variant="body2">{crop.location}</Typography>
+          <Typography variant="body2">{item.location}</Typography>
         </Grid>
         <Grid item xs={6}>
           <Typography variant="body2" fontWeight="bold">
@@ -70,9 +80,11 @@ export const CropInfo: React.FC<CropInfoProps> = ({ crop }) => (
           </Typography>
         </Grid>
         <Grid item xs={6}>
-          <Typography variant="body2">
-            {crop.shippingOptions.join(", ")}
-          </Typography>
+          {item.shippingOptions.map((option: any, index: any) => (
+            <Typography variant="body2" key={index}>
+              {option} {index < item.shippingOptions.length - 1 && ","}
+            </Typography>
+          ))}
         </Grid>
         <Grid item xs={6}>
           <Typography variant="body2" fontWeight="bold">
@@ -80,11 +92,15 @@ export const CropInfo: React.FC<CropInfoProps> = ({ crop }) => (
           </Typography>
         </Grid>
         <Grid item xs={6}>
-          <Typography variant="body2">
-            {crop.pickupOptions.join(", ")}
-          </Typography>
+          {item.pickupOptions.map((option: any, index: any) => (
+            <Typography variant="body2" key={index}>
+              {option} {index < item.pickupOptions.length - 1 && ","}
+            </Typography>
+          ))}
         </Grid>
       </Grid>
-    </CardContent>
-  </Box>
-);
+    </Box>
+  );
+};
+
+export default CropInfo;

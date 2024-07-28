@@ -8,13 +8,13 @@ import {
 } from "react-router-dom";
 import { MainLayout } from "./components";
 import { NotFoundPage, SignInPage } from "./pages";
+import { CourseContent } from "./pages/courses/course-content";
 import CoursesPage from "./pages/courses/courses";
 import CropAiPage from "./pages/crop-ai";
 import Dashboard from "./pages/dashboard";
 import { CommunityForum } from "./pages/forum/forum";
 import CreateCropListing from "./pages/market/example-create";
-import MarketItem from "./pages/market/item/item";
-import Widget from "./pages/market/item/Widget";
+import MarketItem from "./pages/market/item/MarketItem";
 import MarketPage from "./pages/market/market";
 
 const App: React.FC = () => {
@@ -41,8 +41,8 @@ const App: React.FC = () => {
             <Route path="/market/:id" element={<MarketItem />} />
             <Route path="/crop-ai" element={<CropAiPage />} />
             <Route path="/forum" element={<CommunityForum />} />
-            <Route path="/widget" element={<Widget />} />
-            <Route path="/example" element={<CreateCropListing/>} />
+            <Route path="/example" element={<CreateCropListing />} />
+            <Route path="/coursescontent" element={<CourseContent />} />
           </Route>
         )}
         <Route path="/sign-in" element={<SignInPage />} />

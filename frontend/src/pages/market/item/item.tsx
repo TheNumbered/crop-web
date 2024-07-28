@@ -26,6 +26,7 @@ const MarketItem: React.FC = () => {
   });
 
   const [timeLeft, setTimeLeft] = useState<string>("00:00:00");
+  //@ts-ignore
   const [auctionEnded, setAuctionEnded] = useState<boolean>(false);
   const [selectedImage, setSelectedImage] = useState<string>("");
   const [bidAmount, setBidAmount] = useState<number>();

@@ -1,56 +1,31 @@
-import CloseIcon from "@mui/icons-material/Close";
-import { Box, CardMedia, IconButton, Modal } from "@mui/material";
+import { Box, CardMedia, Modal } from "@mui/material";
 import React from "react";
 
 interface ImageModalProps {
-  modalOpen: boolean;
-  selectedPicture: string | null;
-  onClose: () => void;
+  open: boolean;
+  handleClose: () => void;
+  image: string;
 }
 
-export const ImageModal: React.FC<ImageModalProps> = ({
-  modalOpen,
-  selectedPicture,
-  onClose,
-}) => (
-  <Modal
-    open={modalOpen}
-    onClose={onClose}
-    sx={{
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-    }}
-  >
-    <Box
-      sx={{
-        position: "relative",
-        maxWidth: "95%",
-        maxHeight: "95%",
-        backgroundColor: "background.paper",
-        padding: 2,
-        borderRadius: 2,
-      }}
-    >
-      <IconButton
-        onClick={onClose}
-        sx={{ position: "absolute", top: 8, right: 8 }}
+const ImageModal: React.FC<ImageModalProps> = ({
+  open,
+  handleClose,
+  image,
+}) => {
+  return (
+    <Modal open={open} onClose={handleClose}>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
+        }}
       >
-        <CloseIcon />
-      </IconButton>
-      {selectedPicture && (
-        <CardMedia
-          component="img"
-          image={selectedPicture}
-          alt="Enlarged Image"
-          sx={{
-            maxWidth: "100%",
-            maxHeight: "90vh",
-            borderRadius: 2,
-            objectFit: "contain",
-          }}
-        />
-      )}
-    </Box>
-  </Modal>
-);
+        <CardMedia component="img" image={image} alt="Image Modal" />
+      </Box>
+    </Modal>
+  );
+};
+
+export default ImageModal;

@@ -1,47 +1,61 @@
-import { Card, Grid } from "@mui/material";
-import { CropDetails } from "../../../interfaces/index";
-import { BiddingInfo } from "./BiddingInfo";
-import { CropImages } from "./CropImages";
-import { CropInfo } from "./CropInfo";
-import { SimilarListings } from "./SimilarListings";
+import { CropListings } from "@/interfaces";
+import { Card, CardContent, Grid, Typography } from "@mui/material";
+import React from "react";
+import BiddingInfo from "./BiddingInfo";
+import CropImages from "./CropImages";
+import CropInfo from "./CropInfo";
 
 interface CropDetailsCardProps {
-  crop: CropDetails;
+  item: CropListings;
   timeLeft: string;
   auctionEnded: boolean;
-  handleThumbnailClick: (picture: string) => void;
+  selectedImage: string;
+  setSelectedImage: (image: string) => void;
 }
 
-export const CropDetailsCard: React.FC<CropDetailsCardProps> = ({
-  crop,
+const CropDetailsCard: React.FC<CropDetailsCardProps> = ({
+  item,
   timeLeft,
   auctionEnded,
-  handleThumbnailClick,
-}) => (
-  <Card
-    sx={{
-      maxWidth: "xl",
-      mx: "auto",
-      p: 4,
-      backgroundColor: "background.paper",
-      borderRadius: 2,
-      boxShadow: 3,
-      mb: 4,
-    }}
-  >
-    <Grid container spacing={2}>
-      <Grid item xs={12} md={8}>
-        <CropImages crop={crop} handleThumbnailClick={handleThumbnailClick} />
+  selectedImage,
+  setSelectedImage,
+}) => {
+  return (
+    <Card
+      sx={{
+        maxWidth: "xl",
+        mx: "auto",
+        p: 4,
+        backgroundColor: "background.paper",
+      }}
+    >
+      <Grid container spacing={2}>
+        <Grid item xs={12} md={8}>
+          <CropImages
+            selectedImage={selectedImage}
+            setSelectedImage={setSelectedImage}
+            pictures={item.pictures}
+          />
+        </Grid>
+        <Grid item xs={12} md={4}>
+          <CardContent>
+            <Typography variant="h5" component="div" fontWeight="bold">
+              {item.cropName}
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              {item.description}
+            </Typography>
+            <CropInfo item={item} />
+            <BiddingInfo
+              item={item}
+              timeLeft={timeLeft}
+              auctionEnded={auctionEnded}
+            />
+          </CardContent>
+        </Grid>
       </Grid>
-      <Grid item xs={12} md={4}>
-        <CropInfo crop={crop} />
-        <BiddingInfo
-          crop={crop}
-          timeLeft={timeLeft}
-          auctionEnded={auctionEnded}
-        />
-      </Grid>
-    </Grid>
-    <SimilarListings />
-  </Card>
-);
+    </Card>
+  );
+};
+
+export default CropDetailsCard;
