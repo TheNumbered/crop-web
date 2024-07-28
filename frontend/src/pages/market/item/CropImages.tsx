@@ -12,6 +12,9 @@ const CropImages: React.FC<CropImagesProps> = ({
   setSelectedImage,
   pictures,
 }) => {
+  //random number betwee 1 and 3
+  const random = Math.floor(Math.random() * 3) + 1;
+
   return (
     <>
       <CardMedia
@@ -42,7 +45,7 @@ const CropImages: React.FC<CropImagesProps> = ({
             <CardMedia
               component="img"
               height="100"
-              image={picture}
+              image={`/uploads/market/${random}.jpg`}
               alt={`Thumbnail ${index + 1}`}
               sx={{
                 borderRadius: 2,

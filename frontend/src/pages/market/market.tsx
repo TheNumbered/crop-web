@@ -68,7 +68,7 @@ const MarketPage: React.FC = () => {
                             <CardMedia
                                 component="img"
                                 height="150"
-                                image={item.primaryImage}
+                                image={`/uploads/market/${item.id}.jpg`}
                                 sx={{ objectFit: 'cover', borderRadius: '8px 8px 0 0' }}
                                 alt={item.cropName}
                             />

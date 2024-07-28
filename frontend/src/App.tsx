@@ -39,10 +39,10 @@ const App: React.FC = () => {
             <Route path="/courses" element={<CoursesPage />} />
             <Route path="/market" element={<MarketPage />} />
             <Route path="/market/:id" element={<MarketItem />} />
+            <Route path="/courses/:id" element={<CourseContent/>} />
             <Route path="/crop-ai" element={<CropAiPage />} />
             <Route path="/forum" element={<CommunityForum />} />
             <Route path="/example" element={<CreateCropListing />} />
-            <Route path="/coursescontent" element={<CourseContent />} />
           </Route>
         )}
         <Route path="/sign-in" element={<SignInPage />} />

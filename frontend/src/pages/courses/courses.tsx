@@ -33,6 +33,10 @@ const CoursesPage: React.FC = () => {
   const handleOnClick = (id: number) => {
     navigate(`/courses/${id}`);
   };
+  //@ts-ignore
+  const baseUrl :string = import.meta.VITE_API_URL;
+
+
 
   return (
     <Box sx={{ p: 3 }}>
@@ -55,7 +59,8 @@ const CoursesPage: React.FC = () => {
               <CardMedia
                 component="img"
                 height="150"
-                image={course.imageUrl}
+
+                image={`/uploads/courses/${course.id}.jpg`}
                 alt={course.courseName}
               />
               <CardContent>

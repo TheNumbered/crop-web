@@ -36,7 +36,7 @@ const MarketItem: React.FC = () => {
 
   useEffect(() => {
     if (data && data.length > 0) {
-      setSelectedImage(data[0].primaryImage); // Set initial image
+      setSelectedImage(`/uploads/market/${item.id}.jpg`); // Set initial image
     }
   }, [data]);
 
