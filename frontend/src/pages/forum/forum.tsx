@@ -1,3 +1,4 @@
+import { baseUrl } from "@/dataprovider";
 import { useUser } from "@clerk/clerk-react";
 import { Box, Button, Paper } from "@mui/material";
 import React, { useEffect, useState } from "react";
@@ -22,7 +23,7 @@ export const CommunityForum: React.FC = () => {
   }, []);
 
   const fetchTopics = async () => {
-    const url = "http://localhost:3000/forums/topics";
+    const url = `${baseUrl}/forums/topics`;
     try {
       const response = await fetch(url);
       if (response.ok) {
@@ -57,7 +58,7 @@ export const CommunityForum: React.FC = () => {
       };
 
       try {
-        const response = await fetch("http://localhost:3000/forums/topics", {
+        const response = await fetch(`${baseUrl}/forums/topics`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -100,7 +101,7 @@ export const CommunityForum: React.FC = () => {
       };
 
       try {
-        const response = await fetch("http://localhost:3000/forums/replies", {
+        const response = await fetch(`${baseUrl}/forums/replies`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -143,12 +144,9 @@ export const CommunityForum: React.FC = () => {
     const userId = user?.id;
     if (userId === topic.userId) {
       try {
-        const response = await fetch(
-          `http://localhost:3000/forums/topics/${topic.id}`,
-          {
-            method: "DELETE",
-          }
-        );
+        const response = await fetch(`${baseUrl}/forums/topics/${topic.id}`, {
+          method: "DELETE",
+        });
 
         if (response.ok) {
           setTopics(topics.filter((t) => t.id !== topic.id));
@@ -169,12 +167,9 @@ export const CommunityForum: React.FC = () => {
 
     if (userId === reply.replierId) {
       try {
-        const response = await fetch(
-          `http://localhost:3000/forums/reply/${reply.id}`,
-          {
-            method: "DELETE",
-          }
-        );
+        const response = await fetch(`${baseUrl}/forums/reply/${reply.id}`, {
+          method: "DELETE",
+        });
 
         if (response.ok) {
           if (selectedTopic) {
