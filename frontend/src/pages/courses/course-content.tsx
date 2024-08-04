@@ -1,16 +1,15 @@
 import { useGetQuery } from "@/dataprovider";
-import { Courses } from "@/interfaces";
+import { CourseTopics } from "@/interfaces";
 import CloseIcon from "@mui/icons-material/Close";
 import ThumbDownIcon from "@mui/icons-material/ThumbDown";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import { Box, Button, Collapse, Dialog, DialogContent, DialogTitle, IconButton, Typography } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 
 export const CourseContent: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const [openChapters, setOpenChapters] = useState<{ [key: string]: boolean }>({});
-  const [resources, setResources] = useState<Courses[]>([]);
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [modalVideos, setModalVideos] = useState<string[]>([]);
   const [modalTitle, setModalTitle] = useState<string>("");
@@ -44,13 +43,7 @@ export const CourseContent: React.FC = () => {
     });
   };
 
-  const { data, isLoading, isError } = useGetQuery<Courses[]>(`courses/topics/${id}`);
-
-  useEffect(() => {
-    if (data) {
-      setResources(data);
-    }
-  }, [data]);
+  const { data : resources, isLoading, isError } = useGetQuery<CourseTopics[]>(`courses/topics/${id}`);
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -62,11 +55,11 @@ export const CourseContent: React.FC = () => {
     <Box p={4} bgcolor="background.paper" color="text.secondary">
       <Box mt={4}>
         <Button color="primary" fullWidth>
-          Discussion Forum
+          Course Content
         </Button>
       </Box>
       <Box mt={4}>
-        {resources.map((chapter) => (
+        {resources?.map((chapter) => (
           <Box key={chapter.id} mb={2}>
             <Box display="flex" justifyContent="space-between" alignItems="center">
               <Typography
@@ -86,6 +79,7 @@ export const CourseContent: React.FC = () => {
             </Box>
             <Collapse in={openChapters[chapter.id.toString()]}>
               <Box mt={2} mb={2}>
+                {/* @ts-ignore */}
                 {chapter.my_resources.videos.map((videoUrl, index) => (
                   <iframe
                     key={index}

@@ -1,7 +1,41 @@
-# crop-web
+# Crop Web
 
-## Description
-This project is a web application that combines a frontend and a backend.
+Crop Web is a comprehensive web application designed to support and educate farmers. It offers a variety of resources, including educational courses, a marketplace for selling produce, AI-powered image analysis for disease diagnosis, and a discussion forum for community engagement.
+
+## Features
+
+- **Educational Courses:** Access a wide range of courses to enhance farming knowledge and skills.
+- **Marketplace:** Buy and sell produce within a community-driven marketplace.
+- **AI Analysis:** Upload images for AI-powered analysis to diagnose crop diseases.
+- **Discussion Forum:** Engage with other farmers, ask questions, and share insights in the community forum.
+
+## Screenshots
+
+1. **Home Page**
+
+   ![Home Page](images/home.png)
+
+2. **Courses**
+
+   ![Courses](images/courses.png)
+
+3. **Marketplace**
+
+   ![Marketplace](images/market.png)
+
+4. **AI Analysis**
+
+   ![AI Analysis](images/crop-ai.png)
+
+5. **Discussion Forum**
+
+   ![Discussion Forum](images/forum.png)
+
+## Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/TheNumbered/crop-web.git
 
 ## Installation
 To install the project, follow these steps:
@@ -50,3 +84,7 @@ Create a `.env.local` file in the `frontend` directory with the following variab
 - `VITE_CLERK_PUBLISHABLE_KEY`: The publishable key for Clerk authentication.
 - `VITE_API_URL`: The URL for the backend API.
 
+
+## Acknowledgments
+This project was developed to support the farming community by providing education, resources, and a platform for collaboration, This project was developed by the team of:
+Daniel Ngobe, Sisekelo Ngcobo, Theophilus Kgopa and Blessings

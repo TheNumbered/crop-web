@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.39, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: crop_web
+-- Host: crop-web.mysql.database.azure.com    Database: crop_web_db
 -- ------------------------------------------------------
--- Server version	8.0.36
+-- Server version	8.0.37-azure
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -30,7 +30,7 @@ CREATE TABLE `course_topics` (
   PRIMARY KEY (`id`),
   KEY `course_id` (`course_id`),
   CONSTRAINT `course_topics_ibfk_1` FOREIGN KEY (`course_id`) REFERENCES `farming_courses` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,7 +39,7 @@ CREATE TABLE `course_topics` (
 
 LOCK TABLES `course_topics` WRITE;
 /*!40000 ALTER TABLE `course_topics` DISABLE KEYS */;
-INSERT INTO `course_topics` VALUES (1,1,'{\"videos\": [\"https://www.youtube-nocookie.com/embed/DKhdnjt8bNs?si=1n3CqHIA435usqNy&start=1\", \"https://www.youtube.com/embed/example2\"]}','Chapter 1: Foundations'),(2,1,'{\"videos\": [\"https://www.youtube.com/embed/example3\", \"https://www.youtube.com/embed/example4\"]}','Chapter 2: Motion in One Dimension');
+INSERT INTO `course_topics` VALUES (1,1,'{\"videos\": [\"https://www.youtube-nocookie.com/embed/DKhdnjt8bNs?si=1n3CqHIA435usqNy&start=1\", \"https://www.youtube.com/embed/example2\"]}','Chapter 1: Foundations'),(2,1,'{\"videos\": [\"https://www.youtube.com/embed/example3\", \"https://www.youtube.com/embed/example4\"]}','Chapter 2: Motion in One Dimension'),(3,2,'{\"videos\": [\"https://www.youtube-nocookie.com/embed/DKhdnjt8bNs?si=1n3CqHIA435usqNy&start=1\", \"https://www.youtube.com/embed/example2\"]}','Advanced Crop Management'),(4,3,'{\"videos\": [\"https://www.youtube-nocookie.com/embed/DKhdnjt8bNs?si=1n3CqHIA435usqNy&start=1\", \"https://www.youtube.com/embed/example2\"]}','Chapter 1: Foundations'),(5,3,'{\"videos\": [\"https://www.youtube.com/embed/example3\", \"https://www.youtube.com/embed/example4\"]}','Chapter 2: Motion in One Dimension'),(6,2,'{\"videos\": [\"https://www.youtube-nocookie.com/embed/DKhdnjt8bNs?si=1n3CqHIA435usqNy&start=1\", \"https://www.youtube.com/embed/example2\"]}','Chapter 1: Foundations'),(7,2,'{\"videos\": [\"https://www.youtube.com/embed/example3\", \"https://www.youtube.com/embed/example4\"]}','Chapter 2: Motion in One Dimension'),(8,4,'{\"videos\": [\"https://www.youtube-nocookie.com/embed/DKhdnjt8bNs?si=1n3CqHIA435usqNy&start=1\", \"https://www.youtube.com/embed/example2\"]}','Chapter 1: Foundations'),(9,4,'{\"videos\": [\"https://www.youtube.com/embed/example3\", \"https://www.youtube.com/embed/example4\"]}','Chapter 2: Motion in One Dimension'),(10,5,'{\"videos\": [\"https://www.youtube-nocookie.com/embed/DKhdnjt8bNs?si=1n3CqHIA435usqNy&start=1\", \"https://www.youtube.com/embed/example2\"]}','Chapter 1: Foundations'),(11,5,'{\"videos\": [\"https://www.youtube.com/embed/example3\", \"https://www.youtube.com/embed/example4\"]}','Chapter 2: Motion in One Dimension');
 /*!40000 ALTER TABLE `course_topics` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -89,11 +89,11 @@ CREATE TABLE `crop_listings` (
   `shippingOptions` json NOT NULL,
   `pickupOptions` json NOT NULL,
   `description` text NOT NULL,
-  `certifications` json NOT NULL,
   `primaryImage` varchar(255) DEFAULT NULL,
   `pictures` json DEFAULT NULL,
+  `userId` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -102,7 +102,7 @@ CREATE TABLE `crop_listings` (
 
 LOCK TABLES `crop_listings` WRITE;
 /*!40000 ALTER TABLE `crop_listings` DISABLE KEYS */;
-INSERT INTO `crop_listings` VALUES (1,'Tomatoes','Roma','A','1000 kg',152.00,'2024-07-29 17:00:00','John Doe','0736462828','Nairobi, Kenya','[\"Courier\", \"Pickup\"]','[\"Farm\", \"Market\"]','Fresh Roma tomatoes from my farm. They are ripe and ready for sale.','[\"Organic\"]','https://placehold.co/600x400?text=Tomatoes+Image','[\"https://placehold.co/100x100?text=Thumbnail1\", \"https://placehold.co/100x100?text=Thumbnail2\", \"https://placehold.co/100x100?text=Thumbnail3\", \"https://placehold.co/100x100?text=Thumbnail4\", \"https://placehold.co/100x100?text=Thumbnail5\", \"https://placehold.co/100x100?text=Thumbnail6\", \"https://placehold.co/100x100?text=Thumbnail7\", \"https://placehold.co/100x100?text=Thumbnail8\", \"https://placehold.co/100x100?text=Thumbnail9\", \"https://placehold.co/100x100?text=Thumbnail10\"]');
+INSERT INTO `crop_listings` VALUES (1,'Tomatoes','Roma','A','1000 kg',300.00,'2024-07-29 17:00:00','John Doe','0736462828','Nairobi, Kenya','[\"Courier\", \"Pickup\"]','[\"Farm\", \"Market\"]','Fresh Roma tomatoes from my farm. They are ripe and ready for sale.','https://placehold.co/600x400?text=Tomatoes+Image','[\"https://placehold.co/100x100?text=Thumbnail1\", \"https://placehold.co/100x100?text=Thumbnail2\", \"https://placehold.co/100x100?text=Thumbnail3\", \"https://placehold.co/100x100?text=Thumbnail4\", \"https://placehold.co/100x100?text=Thumbnail5\", \"https://placehold.co/100x100?text=Thumbnail6\", \"https://placehold.co/100x100?text=Thumbnail7\", \"https://placehold.co/100x100?text=Thumbnail8\", \"https://placehold.co/100x100?text=Thumbnail9\", \"https://placehold.co/100x100?text=Thumbnail10\"]',0),(2,'Potatoes','Irish','B','500 kg',80.00,'2024-08-05 17:00:00','Alice Smith','0712345678','Nairobi, Kenya','[\"Courier\", \"Pickup\"]','[\"Farm\", \"Market\"]','High-quality Irish potatoes available for sale. Freshly harvested and well-packaged.','https://placehold.co/600x400?text=Potatoes+Image','[\"https://placehold.co/100x100?text=PotatoThumbnail1\", \"https://placehold.co/100x100?text=PotatoThumbnail2\", \"https://placehold.co/100x100?text=PotatoThumbnail3\"]',1),(3,'Strawberries','Albion','A','200 kg',120.00,'2024-08-10 17:00:00','Bob Johnson','0723456789','Nairobi, Kenya','[\"Courier\", \"Pickup\"]','[\"Farm\", \"Market\"]','Sweet and juicy strawberries, perfect for fresh eating or making jams. Farm-fresh and high quality.','https://placehold.co/600x400?text=Strawberries+Image','[\"https://placehold.co/100x100?text=StrawberryThumbnail1\", \"https://placehold.co/100x100?text=StrawberryThumbnail2\", \"https://placehold.co/100x100?text=StrawberryThumbnail3\"]',2);
 /*!40000 ALTER TABLE `crop_listings` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -119,7 +119,7 @@ CREATE TABLE `farming_courses` (
   `description` text,
   `imageUrl` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -150,7 +150,7 @@ CREATE TABLE `forum_comments` (
   PRIMARY KEY (`id`),
   KEY `topic_id` (`topic_id`),
   CONSTRAINT `forum_comments_ibfk_1` FOREIGN KEY (`topic_id`) REFERENCES `forum_topics` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=76 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -159,7 +159,7 @@ CREATE TABLE `forum_comments` (
 
 LOCK TABLES `forum_comments` WRITE;
 /*!40000 ALTER TABLE `forum_comments` DISABLE KEYS */;
-INSERT INTO `forum_comments` VALUES (1,1,'Thank you! Looking forward to the discussions here.','User1','2024-07-01 11:00:00',NULL,NULL),(2,1,'Great to be here!','User2','2024-07-01 12:00:00',NULL,NULL),(3,2,'The FAQ was very helpful, thanks!','User3','2024-07-02 10:30:00',NULL,NULL),(4,3,'Can\'t wait to see the new features!','User4','2024-07-03 09:00:00',NULL,NULL),(5,3,'Looking forward to it!','User5','2024-07-03 10:00:00',NULL,NULL),(48,3,'aswq','Sisekelo Ngcobo','Tue, Jul 23, 2024, 10:31:13 PM','https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2ltYWdlcy5jbGVyay5kZXYvb2F1dGhfZ29vZ2xlL2ltZ18yamVDUHZRZ1ZIREk5NTNUZnlRNXNRTUp5eEsifQ',NULL),(49,3,'asdddfffffffff','Sisekelo Ngcobo','Tue, Jul 23, 2024, 10:34:14 PM','https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2ltYWdlcy5jbGVyay5kZXYvb2F1dGhfZ29vZ2xlL2ltZ18yamVDUHZRZ1ZIREk5NTNUZnlRNXNRTUp5eEsifQ',NULL);
+INSERT INTO `forum_comments` VALUES (1,1,'Thank you! Looking forward to the discussions here.','User1','2024-07-01 11:00:00',NULL,NULL),(2,1,'Great to be here!','User2','2024-07-01 12:00:00',NULL,NULL),(3,2,'The FAQ was very helpful, thanks!','User3','2024-07-02 10:30:00',NULL,NULL),(4,3,'Can\'t wait to see the new features!','User4','2024-07-03 09:00:00',NULL,NULL),(5,3,'Looking forward to it!','User5','2024-07-03 10:00:00',NULL,NULL),(48,3,'aswq','Sisekelo Ngcobo','Tue, Jul 23, 2024, 10:31:13 PM','https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2ltYWdlcy5jbGVyay5kZXYvb2F1dGhfZ29vZ2xlL2ltZ18yamVDUHZRZ1ZIREk5NTNUZnlRNXNRTUp5eEsifQ',NULL),(49,3,'asdddfffffffff','Sisekelo Ngcobo','Tue, Jul 23, 2024, 10:34:14 PM','https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2ltYWdlcy5jbGVyay5kZXYvb2F1dGhfZ29vZ2xlL2ltZ18yamVDUHZRZ1ZIREk5NTNUZnlRNXNRTUp5eEsifQ',NULL),(76,38,'Hello','Daniel Ngobe','2024-07-31 09:38:47','https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2ltYWdlcy5jbGVyay5kZXYvb2F1dGhfZ29vZ2xlL2ltZ18yanRENlFqT0Rza1lNSlgzZEFCMHhwdFo3eFEifQ','user_2jtD6QEMHbSDkVf56Pa1SyAZc8U');
 /*!40000 ALTER TABLE `forum_comments` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -179,7 +179,7 @@ CREATE TABLE `forum_topics` (
   `userId` varchar(255) DEFAULT NULL,
   `imageURL` varchar(1000) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -229,4 +229,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-07-28 13:09:25
+-- Dump completed on 2024-07-31 15:14:42
