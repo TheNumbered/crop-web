@@ -1,5 +1,5 @@
 import { Camera, Forum, Home, School, ShoppingBasket } from '@mui/icons-material';
-import { AppBar, BottomNavigation, BottomNavigationAction, Divider, Drawer, List, ListItem, ListItemIcon, ListItemText, Toolbar, Typography, useMediaQuery } from '@mui/material';
+import { AppBar, BottomNavigation, BottomNavigationAction, Button, Divider, Drawer, List, Toolbar, Typography, useMediaQuery } from '@mui/material';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -13,8 +13,7 @@ const menuItems = [
 
 const SideMenu: React.FC = () => {
   const navigate = useNavigate();
-  //@ts-ignore
-  const isMobile = useMediaQuery(theme => theme.breakpoints.down('sm'));
+  const isMobile = useMediaQuery((theme: any) => theme.breakpoints.down('sm'));
 
   const handleNavigation = (route: string) => {
     navigate(route);
@@ -24,16 +23,30 @@ const SideMenu: React.FC = () => {
     <>
       {!isMobile ? (
         <Drawer variant={"permanent"}>
-          <Toolbar/>
+          <Toolbar />
           <List sx={{ pt: 2, pb: 2 }}>
             {menuItems.map((item, index) => (
               <React.Fragment key={index}>
-                <ListItem button sx={{ flexDirection: 'column', alignItems: 'center' }} onClick={() => handleNavigation(item.route)}>
-                  <ListItemIcon sx={{ minWidth: 'auto', mb: 1 }}>
-                    {item.icon}
-                  </ListItemIcon>
-                  <ListItemText primary={<Typography variant="body2">{item.text}</Typography>} />
-                </ListItem>
+                <Button
+                  onClick={() => handleNavigation(item.route)}
+                  sx={{
+                    width: '60%',
+                    height:'17%', // Ensure buttons take the full width of the parent
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    mb: 2,
+                    backgroundColor: 'lightgreen', // Set background color to light green
+                    '&:hover': {
+                      backgroundColor: 'rgba(0, 0, 0, 0.1)', // Change hover background color
+                    },
+                  }}
+                >
+                  {item.icon}
+                  <Typography variant="caption" sx={{ mt: 1 }}>
+                    {item.text}
+                  </Typography>
+                </Button>
                 {index === 0 && <Divider sx={{ my: 2 }} />}
               </React.Fragment>
             ))}
@@ -48,6 +61,13 @@ const SideMenu: React.FC = () => {
                 label={<Typography variant="caption">{item.text}</Typography>}
                 icon={item.icon}
                 onClick={() => handleNavigation(item.route)}
+                sx={{
+                  width: '60%',
+                  height: '17%', // Ensure buttons take the full width of the parent
+                  '&:hover': {
+                    backgroundColor: 'rgba(0, 0, 0, 0.1)', // Change hover background color
+                  },
+                }}
               />
             ))}
           </BottomNavigation>
