@@ -46,10 +46,16 @@ const HomePage: React.FC = () => {
 
   return (
     <div className="homepage">
-      <video autoPlay muted loop className="background-video">
-        <source src="" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
+      <div className="background-video">
+        <iframe
+          width="100%"
+          height="120%"
+          src="https://www.youtube.com/embed/jauT0wLAEV4?autoplay=1&mute=1&loop=1&playlist=jauT0wLAEV4"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+        ></iframe>
+      </div>
       <div className="content">
         <h1 className="lime-text">Welcome to Crop Web</h1>
         <p>Helping farmers diagnose and manage their crops and livestock.</p>
@@ -73,7 +79,7 @@ const HomePage: React.FC = () => {
           <img src="/ardobe.png" alt="Fresh Vegetables" className="box-img equal-size" />
           <h2 className="box-title">Fresh Vegetables</h2>
           <p className="box-description">
-            Enjoy the freshest vegetables, ripeness. Our organic, locally sourced produce offers vibrant flavors and nutrients 
+            Enjoy the freshest vegetables, ripeness. Our organic, locally sourced produce offers vibrant flavors and nutrients.
           </p>
           <button className="box-button">Learn More</button>
         </div>

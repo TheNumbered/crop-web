@@ -84,17 +84,20 @@ export const TopicDetailsDialog: React.FC<TopicDetailsDialogProps> = ({
                   </Typography>
                 </Box>
               </Box>
+              
+              <img src="/uploads/market/1.jpg" alt="Market" width={"200"} style={{
+                float: "left"
+              }} />
               <Typography
                 variant="body1"
                 color="textPrimary"
                 component="div"
                 // dangerouslySetInnerHTML={{ __html: message }}
                 whiteSpace="pre-wrap"
-                sx={{ ml: 6 }}
               >
                 {message}
-              </Typography>
 
+              </Typography>
               <Box marginTop={2}>
                 <Typography variant="h6">Comments:</Typography>
                 {replies.map((reply, index) => (

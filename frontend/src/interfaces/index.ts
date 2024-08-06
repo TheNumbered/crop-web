@@ -1,3 +1,11 @@
+export type CourseCommunityUrls = {
+    id: number;
+    topicId: number;
+    url: any;
+    rank: number;
+    title: any;
+}
+
 export type CourseTopics = {
     id: number;
     course_id: number;
@@ -62,6 +70,13 @@ export type Resources = {
     topic_id: number;
     resources_by_public: any;
     ranking: number;
+}
+
+export type CourseCommunityUrlsInput = {
+    topicId: number;
+    url: any;
+    rank: number;
+    title: any;
 }
 
 export type CourseTopicsInput = {

@@ -1,8 +1,8 @@
 -- MySQL dump 10.13  Distrib 8.0.39, for Win64 (x86_64)
 --
--- Host: crop-web.mysql.database.azure.com    Database: crop_web_db
+-- Host: localhost    Database: crop_web
 -- ------------------------------------------------------
--- Server version	8.0.37-azure
+-- Server version	8.0.39
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -14,6 +14,34 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `course_community_urls`
+--
+
+DROP TABLE IF EXISTS `course_community_urls`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `course_community_urls` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `topicId` int NOT NULL,
+  `url` varchar(255) NOT NULL,
+  `rank` int DEFAULT '0',
+  `title` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `topicId` (`topicId`),
+  CONSTRAINT `course_community_urls_ibfk_1` FOREIGN KEY (`topicId`) REFERENCES `course_topics` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `course_community_urls`
+--
+
+LOCK TABLES `course_community_urls` WRITE;
+/*!40000 ALTER TABLE `course_community_urls` DISABLE KEYS */;
+/*!40000 ALTER TABLE `course_community_urls` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `course_topics`
@@ -159,7 +187,7 @@ CREATE TABLE `forum_comments` (
 
 LOCK TABLES `forum_comments` WRITE;
 /*!40000 ALTER TABLE `forum_comments` DISABLE KEYS */;
-INSERT INTO `forum_comments` VALUES (1,1,'Thank you! Looking forward to the discussions here.','User1','2024-07-01 11:00:00',NULL,NULL),(2,1,'Great to be here!','User2','2024-07-01 12:00:00',NULL,NULL),(3,2,'The FAQ was very helpful, thanks!','User3','2024-07-02 10:30:00',NULL,NULL),(4,3,'Can\'t wait to see the new features!','User4','2024-07-03 09:00:00',NULL,NULL),(5,3,'Looking forward to it!','User5','2024-07-03 10:00:00',NULL,NULL),(48,3,'aswq','Sisekelo Ngcobo','Tue, Jul 23, 2024, 10:31:13 PM','https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2ltYWdlcy5jbGVyay5kZXYvb2F1dGhfZ29vZ2xlL2ltZ18yamVDUHZRZ1ZIREk5NTNUZnlRNXNRTUp5eEsifQ',NULL),(49,3,'asdddfffffffff','Sisekelo Ngcobo','Tue, Jul 23, 2024, 10:34:14 PM','https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2ltYWdlcy5jbGVyay5kZXYvb2F1dGhfZ29vZ2xlL2ltZ18yamVDUHZRZ1ZIREk5NTNUZnlRNXNRTUp5eEsifQ',NULL),(76,38,'Hello','Daniel Ngobe','2024-07-31 09:38:47','https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2ltYWdlcy5jbGVyay5kZXYvb2F1dGhfZ29vZ2xlL2ltZ18yanRENlFqT0Rza1lNSlgzZEFCMHhwdFo3eFEifQ','user_2jtD6QEMHbSDkVf56Pa1SyAZc8U');
+INSERT INTO `forum_comments` VALUES (1,1,'Thank you! Looking forward to discussing farming techniques and best practices.','User1','2024-07-01 11:00:00',NULL,NULL),(2,1,'Great to be here! Excited to learn from everyone.','User2','2024-07-01 12:00:00',NULL,NULL),(3,2,'Great overview! For those dealing with plant issues, always remember to check environmental factors and act quickly to prevent spreading. Using diagnostic tools and seeking local advice can make a big difference. Thanks for the helpful tips! ?','Theophilus Kgopa','2024-07-02 10:30:00',NULL,NULL),(4,3,'Can\'t wait to see the new agriculture courses!','User4','2024-07-03 09:00:00',NULL,NULL),(5,3,'Looking forward to learning more about sustainable farming.','User5','2024-07-03 10:00:00',NULL,NULL),(48,3,'I am really interested in the upcoming courses on soil health.','Sisekelo Ngcobo','2024-07-23 22:31:13','https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2ltYWdlcy5jbGVyay5kZXYvb2F1dGhfZ29vZ2xlL2ltZ18yajFrZUwxTzBLRFZnaE5mSFc4VFc1MFpvd2sifQ',NULL),(49,3,'The new features sound amazing! Can\'t wait to try them out.','Sisekelo Ngcobo','2024-07-23 22:34:14','https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2ltYWdlcy5jbGVyay5kZXYvb2F1dGhfZ29vZ2xlL2ltZ18yajFrZUwxTzBLRFZnaE5mSFc4VFc1MFpvd2sifQ',NULL),(76,38,'Hello, this topic on inertia is very insightful. Thank you!','Daniel Ngobe','2024-07-31 09:38:47','https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2ltYWdlcy5jbGVyay5kZXYvb2F1dGhfZ29vZ2xlL2ltZ18yanRENlFqT0Rza1lNSlgzZEFCMHhwdFo3eFEifQ','user_2jtD6QEMHbSDkVf56Pa1SyAZc8U');
 /*!40000 ALTER TABLE `forum_comments` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -188,7 +216,7 @@ CREATE TABLE `forum_topics` (
 
 LOCK TABLES `forum_topics` WRITE;
 /*!40000 ALTER TABLE `forum_topics` DISABLE KEYS */;
-INSERT INTO `forum_topics` VALUES (1,'Welcome to the Forum','Feel free to ask questions, share your experiences, and connect with others.','Admin','2024-07-01 10:00:00',NULL,'https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2ltYWdlcy5jbGVyay5kZXYvb2F1dGhfZ2l0aHViL2ltZ18yamVDZWg5U3JlZ01KbGNMWDhwU3dFWDd3ekQifQ'),(2,'How to use the site','Check out our FAQ section to learn more about how to navigate and use the site.','Admin','2024-07-02 09:00:00',NULL,'https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2ltYWdlcy5jbGVyay5kZXYvb2F1dGhfZ2l0aHViL2ltZ18yamVDZWg5U3JlZ01KbGNMWDhwU3dFWDd3ekQifQ'),(3,'New features coming soon','We\'re excited to announce some new features that will be rolled out in the next few weeks. Stay tuned!','Admin','2024-07-03 08:00:00',NULL,'https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2ltYWdlcy5jbGVyay5kZXYvb2F1dGhfZ2l0aHViL2ltZ18yamVDZWg5U3JlZ01KbGNMWDhwU3dFWDd3ekQifQ'),(38,'Inertia','Inertia is such a fascinating concept. It essentially describes the tendency of an object to resist changes to its state of motion.\nNewton\'s First Law of Motion encapsulates this idea:\nan object at rest will stay at rest, and an object in motion will stay in motion unless acted upon by an external force.','Lucy Tlake','2024-07-24 09:44:30','user_2jggZfWuDj4KvRw8A2Q1BdzoQLe','https://img.clerk.com/eyJ0eXBlIjoiZGVmYXVsdCIsImlpZCI6Imluc18yamVDNGJMV2RDZnZzQmx3NWV1UFljZnlpRUYiLCJyaWQiOiJ1c2VyXzJqZ2daZld1RGo0S3ZSdzhBMlExQmR6b1FMZSIsImluaXRpYWxzIjoiTFQifQ'),(40,'kkksla','kasj','ksms',NULL,'some','pepw');
+INSERT INTO `forum_topics` VALUES (1,'Welcome to the Agriculture Forum','Feel free to ask questions about farming, share your experiences, and connect with others in the agriculture community.','Admin','2024-07-01 10:00:00',NULL,'https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2ltYWdlcy5jbGVyay5kZXYvb2F1dGhfZ2l0aHViL2ltZ18yamVDZWg5U3JlZ01KbGNMWDhwU3dFWDd3ekQifQ'),(2,'How to Identify Common Plant Diseases','Identifying common plant diseases begins with carefully examining symptoms observed on the plant. Look for signs such as discoloration, including yellowing or browning of leaves, and unusual spots. Wilting or drooping of leaves and stems may indicate a problem, as well as growth abnormalities like stunted growth or deformed leaves. Additionally, check for molds and mildews, which can appear as white, gray, or fuzzy growths on various plant parts. Sunken lesions or soft, mushy areas on stems or roots could signify cankers or rot.\n\nNext, pay attention to the patterns in symptom distribution. Note whether the symptoms are appearing on older or younger leaves and if they are spreading in a particular pattern. Consider recent environmental factors such as weather conditions, watering practices, and overall plant care. Identifying these patterns helps in narrowing down potential causes. It\'s also crucial to consider the plant species, as some diseases are specific to certain types of plants or plant families.\n\nTo pinpoint the issue, compare the symptoms with those of common plant diseases. Fungal diseases like powdery mildew and downy mildew present distinct appearances, with powdery mildew showing white, powdery substances and downy mildew causing yellow patches with fuzzy growths on the undersides of leaves. Bacterial diseases such as bacterial blight and bacterial wilt often manifest as water-soaked spots or wilting and browning of leaves. ','Admin','2024-07-02 09:00:00',NULL,'https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2ltYWdlcy5jbGVyay5kZXYvb2F1dGhfZ2l0aHViL2ltZ18yamVDZWg5U3JlZ01KbGNMWDhwU3dFWDd3ekQifQ'),(3,'New Agriculture Courses Coming Soon','We\'re excited to announce some new agriculture courses that will be rolled out in the next few weeks. Stay tuned!','Admin','2024-07-03 08:00:00',NULL,'https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2ltYWdlcy5jbGVyay5kZXYvb2F1dGhfZ2l0aHViL2ltZ18yamVDZWg5U3JlZ01KbGNMWDhwU3dFWDd3ekQifQ'),(38,'Inertia in Agricultural Machinery','Inertia is an important concept in the operation of agricultural machinery. Understanding it can help improve efficiency and safety.','Lucy Tlake','2024-07-24 09:44:30','user_2jggZfWuDj4KvRw8A2Q1BdzoQLe','https://img.clerk.com/eyJ0eXBlIjoiZGVmYXVsdCIsImlpZCI6Imluc18yamVDNGJMV2RDZnZzQmx3NWV1UFljZnlpRUYiLCJyaWQiOiJ1c2VyXzJqZ2daZld1RGo0S3ZSdzhBMlExQmR6b1FMZSIsImluaXRpYWxzIjoiTFQifQ'),(40,'Soil Health and Fertility','Discussing the best practices to maintain and improve soil health and fertility for better crop yields.','ksms','2024-07-25 10:00:00','user_2jghgfWuDj4KvRw8A2Q1BdzoQLe','https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2ltYWdlcy5jbGVyay5kZXYvb2F1dGhfZ29vZ2xlL2ltZ18yajFrZUwxTzBLRFZnaE5mSFc4VFc1MFpvd2sifQ');
 /*!40000 ALTER TABLE `forum_topics` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -216,7 +244,6 @@ CREATE TABLE `resources` (
 
 LOCK TABLES `resources` WRITE;
 /*!40000 ALTER TABLE `resources` DISABLE KEYS */;
-INSERT INTO `resources` VALUES (1,1,'Resource 1 by Public',5),(2,1,'Resource 2 by Public',4),(3,2,'Resource 3 by Public',3),(4,2,'Resource 4 by Public',2);
 /*!40000 ALTER TABLE `resources` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -229,4 +256,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-07-31 15:14:42
+-- Dump completed on 2024-08-06 16:54:01
