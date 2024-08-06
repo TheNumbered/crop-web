@@ -4,11 +4,11 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const menuItems = [
-  { icon: <Home sx={{ fontSize: { xs: 24, md: 40 } }} />, text: 'Home', route: '/' },
-  { icon: <School sx={{ fontSize: { xs: 24, md: 40 } }} />, text: 'Courses', route: '/courses' },
-  { icon: <ShoppingBasket sx={{ fontSize: { xs: 24, md: 40 } }} />, text: 'Market', route: '/market' },
-  { icon: <Camera sx={{ fontSize: { xs: 24, md: 40 } }} />, text: 'Crop Ai', route: '/crop-ai' },
-  { icon: <Forum sx={{ fontSize: { xs: 24, md: 40 } }} />, text: 'Forum', route: '/forum' },
+  { icon: <Home sx={{ fontSize: { xs: 24, md: 40 }, color: "white" }} />, text: 'Home', route: '/' },
+  { icon: <School sx={{ fontSize: { xs: 24, md: 40 }, color: "white" }} />, text: 'Courses', route: '/courses' },
+  { icon: <ShoppingBasket sx={{ fontSize: { xs: 24, md: 40 }, color: "white" }} />, text: 'Market', route: '/market' },
+  { icon: <Camera sx={{ fontSize: { xs: 24, md: 40 },color: "white" }} />, text: 'Ai', route: '/crop-ai' },
+  { icon: <Forum sx={{ fontSize: { xs: 24, md: 40 },color: "white" }} />, text: 'Forum', route: '/forum' },
 ];
 
 const SideMenu: React.FC = () => {
@@ -17,14 +17,25 @@ const SideMenu: React.FC = () => {
 
   const handleNavigation = (route: string) => {
     navigate(route);
+    
   };
-
   return (
     <>
       {!isMobile ? (
-        <Drawer variant={"permanent"}>
+        //transparent drawer
+        <Drawer variant={"permanent"}
+          sx= {
+            {
+              '& .MuiDrawer-paper': {
+                backgroundColor: "#FFFFFF60",
+                border: 'none',
+              },
+            }
+          }
+        >
           <Toolbar />
-          <List sx={{ pt: 2, pb: 2 }}>
+    
+          <List sx={{ pt: 2, pb: 2, overflow:"hidden", pl:1}}>
             {menuItems.map((item, index) => (
               <React.Fragment key={index}>
                 <Button
@@ -36,14 +47,14 @@ const SideMenu: React.FC = () => {
                     flexDirection: 'column',
                     alignItems: 'center',
                     mb: 2,
-                    backgroundColor: 'lightgreen', // Set background color to light green
+                    backgroundColor: "#335E33",
                     '&:hover': {
                       backgroundColor: 'rgba(0, 0, 0, 0.1)', // Change hover background color
                     },
                   }}
                 >
                   {item.icon}
-                  <Typography variant="caption" sx={{ mt: 1 }}>
+                  <Typography variant={"caption"} sx={{ mt: 1, color: "white" }}>
                     {item.text}
                   </Typography>
                 </Button>

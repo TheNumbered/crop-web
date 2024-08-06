@@ -47,7 +47,7 @@ const HomePage: React.FC = () => {
   return (
     <div className="homepage">
       <video autoPlay muted loop className="background-video">
-        <source src="/vids.mp4" type="video/mp4" />
+        <source src="" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
       <div className="content">

@@ -7,7 +7,7 @@ const createSoftTheme = (mode: "dark" | "light") => {
     palette: {
       mode,
       primary: {
-        main: "#1B3B42",
+        main:"#335E33",
       },
       secondary: {
         main: '#68B154', // Soft green
