@@ -4,11 +4,11 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const menuItems = [
-  { icon: <Home sx={{ fontSize: { xs: 24, md: 40 }, color: "white" }} />, text: 'Home', route: '/' },
-  { icon: <School sx={{ fontSize: { xs: 24, md: 40 }, color: "white" }} />, text: 'Courses', route: '/courses' },
-  { icon: <ShoppingBasket sx={{ fontSize: { xs: 24, md: 40 }, color: "white" }} />, text: 'Market', route: '/market' },
-  { icon: <Camera sx={{ fontSize: { xs: 24, md: 40 },color: "white" }} />, text: 'Ai', route: '/crop-ai' },
-  { icon: <Forum sx={{ fontSize: { xs: 24, md: 40 },color: "white" }} />, text: 'Forum', route: '/forum' },
+  { icon: <Home />, text: 'Home', route: '/' },
+  { icon: <School />, text: 'Courses', route: '/courses' },
+  { icon: <ShoppingBasket />, text: 'Market', route: '/market' },
+  { icon: <Camera />, text: 'Ai', route: '/crop-ai' },
+  { icon: <Forum />, text: 'Forum', route: '/forum' },
 ];
 
 const SideMenu: React.FC = () => {
@@ -17,32 +17,28 @@ const SideMenu: React.FC = () => {
 
   const handleNavigation = (route: string) => {
     navigate(route);
-    
   };
+
   return (
     <>
       {!isMobile ? (
-        //transparent drawer
         <Drawer variant={"permanent"}
-          sx= {
-            {
-              '& .MuiDrawer-paper': {
-                backgroundColor: "#FFFFFF60",
-                border: 'none',
-              },
-            }
-          }
+          sx={{
+            '& .MuiDrawer-paper': {
+              backgroundColor: "#FFFFFF60",
+              border: 'none',
+            },
+          }}
         >
           <Toolbar />
-    
-          <List sx={{ pt: 2, pb: 2, overflow:"hidden", pl:1}}>
+          <List sx={{ pt: 2, pb: 2, overflow: "hidden", pl: 1 }}>
             {menuItems.map((item, index) => (
               <React.Fragment key={index}>
                 <Button
                   onClick={() => handleNavigation(item.route)}
                   sx={{
                     width: '60%',
-                    height:'17%', // Ensure buttons take the full width of the parent
+                    height: '17%', // Ensure buttons take the full width of the parent
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
@@ -53,7 +49,7 @@ const SideMenu: React.FC = () => {
                     },
                   }}
                 >
-                  {item.icon}
+                  {React.cloneElement(item.icon, { sx: { fontSize: { xs: 24, md: 40 }, color: "white" } })}
                   <Typography variant={"caption"} sx={{ mt: 1, color: "white" }}>
                     {item.text}
                   </Typography>
@@ -70,14 +66,10 @@ const SideMenu: React.FC = () => {
               <BottomNavigationAction
                 key={index}
                 label={<Typography variant="caption">{item.text}</Typography>}
-                icon={item.icon}
+                icon={React.cloneElement(item.icon, { sx: { fontSize: { xs: 24, md: 40 } } })}
                 onClick={() => handleNavigation(item.route)}
                 sx={{
-                  width: '60%',
-                  height: '17%', // Ensure buttons take the full width of the parent
-                  '&:hover': {
-                    backgroundColor: 'rgba(0, 0, 0, 0.1)', // Change hover background color
-                  },
+                  paddingTop: 1,
                 }}
               />
             ))}
