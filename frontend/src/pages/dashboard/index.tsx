@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import './Dashboard.css';
-
 interface CurrentWeather {
   temperature_2m: number;
   wind_speed_10m: number;
@@ -45,11 +44,12 @@ const HomePage: React.FC = () => {
   }, []);
 
   return (
-    <div className="homepage">
-      <video autoPlay muted loop className="background-video">
-        <source src="/vids.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
+    <div className="homepage" style={{
+      backgroundImage: 'url(/background.png)',
+       backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      backgroundRepeat: 'no-repeat',
+    }}>
       <div className="content">
         <h1 className="lime-text">Welcome to Crop Web</h1>
         <p>Helping farmers diagnose and manage their crops and livestock.</p>

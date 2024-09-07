@@ -30,13 +30,10 @@ const SideMenu: React.FC = () => {
                 <Button
                   onClick={() => handleNavigation(item.route)}
                   sx={{
-                    width: '60%',
-                    height:'17%', // Ensure buttons take the full width of the parent
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
                     mb: 2,
-                    backgroundColor: 'lightgreen', // Set background color to light green
                     '&:hover': {
                       backgroundColor: 'rgba(0, 0, 0, 0.1)', // Change hover background color
                     },

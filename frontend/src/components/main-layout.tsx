@@ -10,7 +10,7 @@ const MainLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
    <>
     <Header />
         <SideMenu />
-        <main style={!isMobile?{marginLeft: "100px", marginTop:"50px"}:{marginTop:"50px"}}>{children}</main>
+        <main style={!isMobile?{marginLeft: "70px", marginTop:"50px"}:{marginTop:"50px"}}>{children}</main>
     </>
   );
 };
